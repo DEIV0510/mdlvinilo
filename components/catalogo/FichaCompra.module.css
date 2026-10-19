@@ -1,0 +1,93 @@
+.ficha {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.grupo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.leyenda {
+  margin-bottom: 0.75rem;
+  padding: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+
+.elegido {
+  color: var(--oro-200);
+  letter-spacing: 0.08em;
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.opcion {
+  position: relative;
+}
+
+.opcion input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.opcion span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 3rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  justify-content: center;
+  font-size: var(--t-sm);
+  color: var(--marfil-2);
+  border: 1px solid var(--linea);
+  transition:
+    border-color 0.25s,
+    color 0.25s,
+    background-color 0.25s;
+}
+
+.opcion:hover span {
+  border-color: var(--oro-400);
+}
+
+.opcion input:checked + span {
+  color: var(--negro);
+  background: var(--oro-300);
+  border-color: var(--oro-300);
+}
+
+.opcion input:focus-visible + span {
+  outline: 2px solid var(--oro-200);
+  outline-offset: 3px;
+}
+
+.muestra {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1px solid rgb(243 235 221 / 0.4);
+}
+
+.acciones {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ayuda {
+  font-size: var(--t-xs);
+  color: var(--texto-3);
+}

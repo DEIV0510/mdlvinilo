@@ -1,0 +1,124 @@
+.boton {
+  --alto: 3.25rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: var(--alto);
+  padding: 0 1.6rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-stretch: 112%;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  text-align: center;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0;
+  transition:
+    color 0.35s var(--ease),
+    background-color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.boton svg {
+  flex: none;
+  font-size: 1.15em;
+  transition: transform 0.45s var(--ease);
+}
+
+.boton:hover svg.flecha,
+.boton:focus-visible svg.flecha {
+  transform: translateX(4px);
+}
+
+.boton:active {
+  transform: translateY(1px);
+}
+
+/* Principal: oro metálico con destello al pasar */
+.principal {
+  color: #140c00;
+  background: var(--metal-boton);
+  box-shadow:
+    inset 0 1px 0 rgb(255 244 204 / 0.65),
+    inset 0 -1px 0 rgb(110 76 10 / 0.6);
+}
+
+.principal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, rgb(255 250 225 / 0.75) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.9s var(--ease);
+}
+
+.principal:hover::after,
+.principal:focus-visible::after {
+  transform: translateX(120%);
+}
+
+/* Secundario: filete dorado */
+.secundario {
+  color: var(--marfil);
+  border: 1px solid var(--linea-fuerte);
+  background: rgb(5 5 5 / 0.35);
+}
+
+.secundario:hover,
+.secundario:focus-visible {
+  border-color: var(--oro-300);
+  background: rgb(232 168 24 / 0.08);
+  color: var(--oro-50);
+}
+
+/* Fantasma: texto con subrayado que crece */
+.enlace {
+  --alto: 2.75rem;
+  padding: 0;
+  color: var(--marfil);
+  overflow: visible;
+}
+
+.enlace span {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.5s var(--ease);
+  padding-bottom: 0.2em;
+}
+
+.enlace:hover span,
+.enlace:focus-visible span {
+  background-size: 100% 1px;
+}
+
+.enlace svg {
+  color: var(--oro-400);
+}
+
+.compacto {
+  --alto: 2.5rem;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+.ancho {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton,
+  .boton svg,
+  .principal::after,
+  .enlace span {
+    transition: none;
+  }
+}

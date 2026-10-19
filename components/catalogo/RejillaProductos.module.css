@@ -1,0 +1,36 @@
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(3rem, 5vw, 5rem) clamp(1.25rem, 2.5vw, 2.5rem);
+  margin: 0;
+  padding: 0;
+}
+
+/* Columna central desplazada: ritmo editorial */
+.celda:nth-child(3n + 2) {
+  margin-top: clamp(2rem, 6vw, 6rem);
+}
+
+@media (max-width: 1024px) {
+  .rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .celda:nth-child(3n + 2) {
+    margin-top: 0;
+  }
+
+  .celda:nth-child(2n) {
+    margin-top: clamp(2rem, 8vw, 4rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .rejilla {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .celda:nth-child(2n) {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,272 @@
+.panel {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(460px, 100vw);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--linea);
+  background: var(--fondo-2);
+  color: var(--marfil);
+  overflow: hidden;
+}
+
+.panel::backdrop {
+  background: rgb(0 0 0 / 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.panel[open] {
+  animation: entrar 0.5s var(--ease);
+}
+
+.panel[open]::backdrop {
+  animation: fundido 0.4s ease;
+}
+
+@keyframes entrar {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes fundido {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    inset: auto 0 0 0;
+    width: 100vw;
+    height: auto;
+    max-height: 88dvh;
+    border-left: 0;
+    border-top: 1px solid var(--linea-fuerte);
+  }
+
+  .panel[open] {
+    animation-name: subir;
+  }
+
+  @keyframes subir {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+  }
+}
+
+.caja {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: inherit;
+  padding: 1.75rem clamp(1.25rem, 4vw, 2rem) 1.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.cabecera {
+  position: relative;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+.titulo {
+  margin-top: 0.4rem;
+  font-size: clamp(2.25rem, 8vw, 3rem);
+}
+
+.titulo em {
+  color: var(--oro-300);
+}
+
+.cerrar {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.35rem;
+  color: var(--marfil);
+  border-radius: 50%;
+  transition: color 0.3s, transform 0.4s var(--ease);
+}
+
+.cerrar:hover {
+  color: var(--oro-300);
+  transform: rotate(90deg);
+}
+
+.vacia {
+  display: grid;
+  gap: 1rem;
+  padding: 2.5rem 0;
+  color: var(--texto-2);
+}
+
+.enlaceVacio {
+  color: var(--oro-300);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.lista {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "texto cantidad"
+    "quitar cantidad";
+  gap: 0.35rem 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--linea-suave);
+}
+
+.itemTexto {
+  grid-area: texto;
+  min-width: 0;
+}
+
+.itemNombre {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.itemNombre:hover {
+  color: var(--oro-200);
+}
+
+.itemDetalle {
+  margin-top: 0.2rem;
+  font-size: var(--t-sm);
+  color: var(--texto-2);
+}
+
+.cantidad {
+  grid-area: cantidad;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--linea);
+}
+
+.cantidad button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--marfil);
+}
+
+.cantidad button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cantidad button:not(:disabled):hover {
+  color: var(--oro-300);
+}
+
+.cantidad output {
+  min-width: 1.75rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.quitar {
+  grid-area: quitar;
+  justify-self: start;
+  min-height: 2rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-3);
+}
+
+.quitar:hover {
+  color: var(--oro-300);
+}
+
+.pie {
+  display: grid;
+  gap: 0.9rem;
+  padding-top: 1.25rem;
+}
+
+.nota {
+  font-size: var(--t-sm);
+  color: var(--texto-2);
+  line-height: 1.5;
+}
+
+.vaciar {
+  justify-self: center;
+  min-height: 2.5rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-3);
+}
+
+.vaciar:hover {
+  color: var(--marfil);
+}
+
+.privacidad {
+  margin-top: 1rem;
+  font-size: var(--t-xs);
+  color: var(--texto-3);
+  text-align: center;
+}
+
+/* Aviso flotante */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 120;
+  max-width: min(92vw, 32rem);
+  padding: 0.9rem 1.2rem;
+  font-size: var(--t-sm);
+  color: var(--marfil);
+  background: var(--superficie-2);
+  border: 1px solid var(--linea-fuerte);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 0.6);
+  transform: translate(-50%, 160%);
+  opacity: 0;
+  transition:
+    transform 0.5s var(--ease),
+    opacity 0.4s;
+  pointer-events: none;
+}
+
+.aviso[data-visible] {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel[open],
+  .panel[open]::backdrop {
+    animation: none;
+  }
+
+  .aviso {
+    transition: opacity 0.2s;
+  }
+}

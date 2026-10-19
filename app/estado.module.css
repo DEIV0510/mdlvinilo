@@ -1,0 +1,41 @@
+.estado {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.25rem;
+  min-height: 100dvh;
+  padding: 3rem var(--gutter);
+  text-align: center;
+  background:
+    radial-gradient(45% 40% at 50% 35%, rgb(232 168 24 / 0.1), transparent 70%),
+    var(--negro);
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.codigo {
+  font-size: clamp(5rem, 16vw, 10rem);
+  font-style: italic;
+  line-height: 0.9;
+}
+
+.titulo {
+  font-size: var(--t-2xl);
+}
+
+.texto {
+  max-width: 40ch;
+  color: var(--texto-2);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}

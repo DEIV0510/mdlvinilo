@@ -1,0 +1,133 @@
+.documento {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 46rem);
+  gap: clamp(2rem, 5vw, 5rem);
+  justify-content: center;
+}
+
+.cabecera {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1rem;
+  max-width: 50rem;
+  margin-bottom: 1rem;
+}
+
+.titulo {
+  font-size: var(--t-3xl);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.resumen {
+  font-size: var(--t-lg);
+  color: var(--marfil-2);
+}
+
+.fecha {
+  font-size: var(--t-sm);
+  color: var(--texto-3);
+}
+
+.borrador {
+  padding: 1rem 1.25rem;
+  font-size: var(--t-sm);
+  color: var(--oro-50);
+  border: 1px dashed var(--linea-fuerte);
+  background: rgb(232 168 24 / 0.08);
+}
+
+.indice {
+  position: sticky;
+  top: calc(var(--cabecera) + 1.5rem);
+  align-self: start;
+  font-size: var(--t-sm);
+}
+
+.indice ol {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--linea);
+}
+
+.indice a {
+  display: block;
+  padding: 0.4rem 0 0.4rem 1rem;
+  color: var(--texto-2);
+}
+
+.indice a:hover {
+  color: var(--oro-200);
+}
+
+.cuerpo {
+  display: grid;
+  gap: 3rem;
+  min-width: 0;
+}
+
+.seccion {
+  display: grid;
+  gap: 1rem;
+  scroll-margin-top: calc(var(--cabecera) + 1.5rem);
+  color: var(--marfil-2);
+  line-height: 1.7;
+}
+
+.seccion ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.seccion li::marker {
+  color: var(--oro-500);
+}
+
+.subtitulo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: var(--t-xl);
+  line-height: 1.15;
+  color: var(--marfil);
+}
+
+.num {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--oro-400);
+}
+
+.pendiente {
+  padding: 0.85rem 1rem;
+  font-size: var(--t-sm);
+  border-left: 2px solid var(--oro-500);
+  background: rgb(232 168 24 / 0.06);
+}
+
+.pendienteRotulo {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro-300);
+}
+
+@media (max-width: 900px) {
+  .documento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .indice {
+    position: static;
+  }
+}

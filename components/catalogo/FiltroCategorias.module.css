@@ -1,0 +1,64 @@
+.filtro {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-block: 1px solid var(--linea);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filtro::-webkit-scrollbar {
+  display: none;
+}
+
+.filtro ul {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.filtro a {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 1.1rem 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-stretch: 112%;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--texto-2);
+  transition: color 0.3s;
+}
+
+.filtro a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--oro-300);
+  transform: scaleX(0);
+  transition: transform 0.45s var(--ease);
+}
+
+.filtro a:hover {
+  color: var(--marfil);
+}
+
+.filtro a[aria-current="page"] {
+  color: var(--oro-200);
+}
+
+.filtro a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.conteo {
+  font-size: 0.625rem;
+  color: var(--texto-3);
+}

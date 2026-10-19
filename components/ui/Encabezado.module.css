@@ -1,0 +1,61 @@
+.encabezado {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.centro {
+  justify-items: center;
+  text-align: center;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.numero {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--oro-300);
+}
+
+.raya {
+  width: clamp(2.5rem, 6vw, 5rem);
+  height: 1px;
+  background: var(--linea-fuerte);
+}
+
+.titulo {
+  font-size: var(--t-4xl);
+  max-width: 14ch;
+}
+
+.centro .titulo {
+  max-width: 18ch;
+}
+
+.titulo em {
+  color: var(--oro-300);
+}
+
+.pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 3rem;
+}
+
+.centro .pie {
+  justify-content: center;
+}
+
+.entrada {
+  max-width: 44ch;
+  font-size: var(--t-lg);
+  line-height: 1.55;
+  color: var(--texto-2);
+}

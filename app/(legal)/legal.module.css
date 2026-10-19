@@ -1,0 +1,42 @@
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--cabecera);
+  padding-inline: var(--gutter);
+  background: rgb(5 5 5 / 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linea-suave);
+}
+
+.marca {
+  display: block;
+  width: 60px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.volver {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marfil-2);
+}
+
+.volver:hover {
+  color: var(--oro-200);
+}
+
+.principal {
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+}

@@ -1,0 +1,130 @@
+.indice {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--linea);
+}
+
+.fila {
+  border-bottom: 1px solid var(--linea);
+}
+
+.enlace {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 0.9fr) auto;
+  align-items: center;
+  gap: 1rem clamp(1rem, 3vw, 3rem);
+  padding: clamp(1.1rem, 2.4vw, 1.9rem) 0;
+  isolation: isolate;
+}
+
+/* Barrido de luz dorada al pasar */
+.enlace::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgb(232 168 24 / 0.1), transparent 70%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+}
+
+.enlace:hover::before,
+.enlace:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--oro-400);
+}
+
+.nombre {
+  font-size: clamp(2.1rem, 1.2rem + 4vw, 5.25rem);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.nombreTexto {
+  display: inline-block;
+  transition:
+    transform 0.7s var(--ease),
+    color 0.4s;
+}
+
+.enlace:hover .nombreTexto,
+.enlace:focus-visible .nombreTexto {
+  transform: translateX(0.35em);
+  font-style: italic;
+  color: var(--oro-200);
+}
+
+.linea {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marfil-2);
+  white-space: nowrap;
+}
+
+.flecha {
+  font-size: 1.2rem;
+  color: var(--oro-300);
+  transition: transform 0.5s var(--ease);
+}
+
+.enlace:hover .flecha,
+.enlace:focus-visible .flecha {
+  transform: translateX(6px);
+}
+
+@media (max-width: 900px) {
+  .enlace {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    grid-template-areas:
+      "num nombre"
+      ". linea"
+      ". estado";
+    row-gap: 0.4rem;
+  }
+
+  .num {
+    grid-area: num;
+    align-self: start;
+    padding-top: 0.6em;
+  }
+
+  .nombre {
+    grid-area: nombre;
+  }
+
+  .linea {
+    grid-area: linea;
+  }
+
+  .estado {
+    grid-area: estado;
+    margin-top: 0.3rem;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enlace::before,
+  .nombreTexto,
+  .flecha {
+    transition: none;
+  }
+}

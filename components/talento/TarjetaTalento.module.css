@@ -1,0 +1,89 @@
+.tarjeta {
+  position: relative;
+}
+
+.enlace {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.retrato {
+  position: relative;
+  overflow: hidden;
+}
+
+.retrato > * {
+  transition: transform 1.4s var(--ease);
+}
+
+.velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgb(0 0 0 / 0.55));
+  pointer-events: none;
+}
+
+.enlace:hover .retrato > :first-child {
+  transform: scale(1.04);
+}
+
+.pie {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.numero {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--oro-400);
+}
+
+.nombre {
+  font-size: var(--t-2xl);
+  line-height: 1.05;
+  transition: color 0.3s;
+}
+
+.enlace:hover .nombre,
+.enlace:focus-visible .nombre {
+  color: var(--oro-200);
+}
+
+.presentacion {
+  font-size: var(--t-sm);
+  color: var(--texto-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ver {
+  justify-self: start;
+  margin-top: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--marfil);
+  background: linear-gradient(var(--oro-300), var(--oro-300)) 0 100% / 30% 1px no-repeat;
+  padding-bottom: 0.35em;
+  transition: background-size 0.5s var(--ease);
+}
+
+.enlace:hover .ver,
+.enlace:focus-visible .ver {
+  background-size: 100% 1px;
+}
+
+.demo {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retrato > * {
+    transition: none;
+  }
+}

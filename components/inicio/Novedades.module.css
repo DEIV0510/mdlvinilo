@@ -1,0 +1,155 @@
+.seccion {
+  padding-top: var(--seccion);
+}
+
+.portada {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+}
+
+.portadaImagen {
+  grid-column: 1 / span 7;
+}
+
+.portadaTexto {
+  grid-column: 8 / -1;
+  display: grid;
+  gap: 1rem;
+  padding-bottom: clamp(0rem, 3vw, 3rem);
+}
+
+.numero {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--oro-400);
+}
+
+.marcas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.portadaTitulo {
+  font-size: var(--t-3xl);
+}
+
+.descripcion {
+  max-width: 38ch;
+  color: var(--texto-2);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin: clamp(3rem, 6vw, 5.5rem) 0 0;
+  padding: clamp(2rem, 4vw, 3rem) 0 0;
+  border-top: 1px solid var(--linea);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.itemTexto {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.itemTitulo {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: var(--t-xl);
+  line-height: 1.1;
+}
+
+.item .descripcion {
+  font-size: var(--t-sm);
+}
+
+/* Sin novedades publicadas: invitación honesta a seguir las redes */
+.vacio {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid var(--linea);
+  background:
+    radial-gradient(60% 120% at 100% 0%, rgb(232 168 24 / 0.08), transparent 60%),
+    var(--fondo-2);
+}
+
+.vacioTexto {
+  font-family: var(--display);
+  font-size: var(--t-2xl);
+  line-height: 1.15;
+  max-width: 24ch;
+}
+
+.vacioTexto strong {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--oro-300);
+}
+
+.vacioAcciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.5rem;
+}
+
+.vacioNota a {
+  font-size: var(--t-sm);
+  color: var(--marfil-2);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.vacioNota a:hover {
+  color: var(--oro-200);
+}
+
+@media (max-width: 900px) {
+  .portadaImagen,
+  .portadaTexto {
+    grid-column: 1 / -1;
+  }
+
+  .lista {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(78vw, 1fr);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scrollbar-width: thin;
+    scrollbar-color: var(--oro-700) transparent;
+  }
+
+  .item {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .vacioAcciones > * {
+    width: 100%;
+  }
+}

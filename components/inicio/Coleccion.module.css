@@ -1,0 +1,16 @@
+.seccion {
+  padding-top: var(--seccion);
+}
+
+.destacados {
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.destacadosCabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}

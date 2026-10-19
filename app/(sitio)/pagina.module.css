@@ -1,0 +1,39 @@
+/* Estilos compartidos por las páginas internas del sitio */
+.pagina {
+  padding-top: calc(var(--cabecera) + clamp(2.5rem, 6vw, 5rem));
+}
+
+.migas {
+  margin-bottom: 1.75rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-3);
+}
+
+.migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.migas li + li::before {
+  content: "/";
+  margin-right: 0.6rem;
+  color: var(--oro-700);
+}
+
+.migas a {
+  color: var(--texto-2);
+}
+
+.migas a:hover {
+  color: var(--oro-200);
+}
+
+.seccionExtra {
+  margin-top: var(--seccion);
+}
