@@ -37,7 +37,7 @@ export function Pie() {
 
         <nav aria-label="Pie de página" className={s.columna}>
           <p className="rotulo rotulo--oro">Explorar</p>
-          <ul role="list">
+          <ul role="list" className={s.lista}>
             {navegacion.map((n) => (
               <li key={n.href}>
                 <Link href={n.href}>{n.texto}</Link>
@@ -48,7 +48,7 @@ export function Pie() {
 
         <div className={s.columna}>
           <p className="rotulo rotulo--oro">Legal</p>
-          <ul role="list">
+          <ul role="list" className={s.lista}>
             {enlacesLegales.map((n) => (
               <li key={n.href}>
                 <Link href={n.href}>{n.texto}</Link>

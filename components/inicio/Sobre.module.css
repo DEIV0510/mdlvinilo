@@ -21,7 +21,7 @@
   font-size: clamp(9rem, 30vw, 30rem);
   line-height: 0.8;
   color: transparent;
-  -webkit-text-stroke: 1px rgb(232 168 24 / 0.16);
+  -webkit-text-stroke: 1px rgb(232 168 24 / 0.1);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -86,7 +86,7 @@
 .datos {
   grid-column: 8 / -1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 0;
   border-top: 1px solid var(--linea);
   border-left: 1px solid var(--linea);
@@ -105,7 +105,7 @@
 
 .datoValor {
   margin: 0;
-  font-size: clamp(3.5rem, 2rem + 4.5vw, 6.5rem);
+  font-size: clamp(3rem, 1.6rem + 3.6vw, 5.5rem);
   line-height: 0.9;
 }
 

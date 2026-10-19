@@ -22,7 +22,7 @@ export function Lamina({
   return (
     <div className={`${s.lamina} ${className ?? ""}`} style={{ aspectRatio: proporcion }} role="img" aria-label={`${nombre}: ${rotulo.toLowerCase()}`}>
       <span className={s.surcos} aria-hidden="true" />
-      <span className={`display metal ${s.inicial}`} aria-hidden="true">
+      <span className={`display ${s.inicial}`} aria-hidden="true">
         {inicial.toUpperCase()}
       </span>
       <span className={s.rotulo} aria-hidden="true">

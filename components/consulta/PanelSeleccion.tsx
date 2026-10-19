@@ -6,6 +6,7 @@ import { canalConsulta, mensajes } from "@/lib/contacto";
 import { IconoCerrar, IconoMas, IconoMenos } from "@/components/ui/Iconos";
 import { BotonConsulta } from "./BotonConsulta";
 import { useConsulta } from "./ConsultaProvider";
+import { bloquearFondo } from "@/lib/modal";
 import s from "./Seleccion.module.css";
 
 /** Panel lateral (diálogo modal nativo) con la lista de consulta. */
@@ -18,6 +19,7 @@ export function PanelSeleccion() {
     if (!d) return;
     if (abierto && !d.open) d.showModal();
     if (!abierto && d.open) d.close();
+    bloquearFondo("seleccion", abierto);
   }, [abierto]);
 
   const mensaje = mensajes.lista(items);

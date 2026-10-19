@@ -46,6 +46,16 @@
     #8a5a06 100%
   );
   --metal-boton: linear-gradient(180deg, #f8d35a 0%, #edb12a 45%, #d88808 100%);
+  /* Variante para texto: sin extremos oscuros, legible sobre negro */
+  --metal-texto: linear-gradient(
+    100deg,
+    #e8a818 0%,
+    #f8d858 22%,
+    #fff0b0 40%,
+    #f5c542 58%,
+    #e8a818 78%,
+    #f8d858 100%
+  );
 
   /* Tipografía (las variables --f-* las define next/font en <html>) */
   --display: var(--f-bodoni), "Bodoni 72", "Didot", Georgia, serif;
@@ -180,8 +190,9 @@ body::before {
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  /* Textura PNG pequeña (más barata de pintar que un filtro SVG en móviles) */
+  background-image: url("/brand/grano.png");
 }
 
 /* ─────────── Utilidades ─────────── */
@@ -240,23 +251,23 @@ body::before {
 /* Titulares editoriales */
 .display {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.92;
   letter-spacing: -0.02em;
-  font-optical-sizing: auto;
+  /* Tamaño óptico moderado: conserva el contraste Didone sin que los
+     trazos finos desaparezcan en titulares grandes sobre negro. */
+  font-variation-settings: "opsz" 54;
 }
 
 .display em,
 .cursiva {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* Texto con acabado metálico (usar con moderación) */
 .metal {
-  background: var(--metal);
-  background-size: 220% 100%;
-  background-position: 0% 50%;
+  background: var(--metal-texto);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -345,7 +356,8 @@ main:focus {
   outline: none;
 }
 
-/* Bloquea el desplazamiento de fondo con un diálogo modal abierto */
-html:has(dialog[open]) {
+/* Bloquea el desplazamiento de fondo con un diálogo modal abierto
+   (atributo puesto por JS: evita el coste de html:has() en cada cambio del DOM) */
+html[data-modal] {
   overflow: hidden;
 }

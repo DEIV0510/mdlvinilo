@@ -51,7 +51,7 @@
 }
 
 .visual {
-  grid-column: 6 / -1;
+  grid-column: 7 / -1;
   grid-row: 1;
   position: relative;
   display: grid;
@@ -255,9 +255,10 @@
     transform: translateY(16px);
   }
 
+  /* Sin opacidad 0: el logotipo se pinta desde el primer cuadro (mejor LCP) */
   :global(html.js) .logo {
-    opacity: 0;
     transform: scale(0.94);
+    filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.75)) brightness(0.55);
   }
 
   :global(html.js) .disco {
@@ -307,10 +308,10 @@
   }
 
   :global(html.intro-fin) .logo {
-    opacity: 1;
     transform: none;
+    filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.75)) brightness(1);
     transition:
-      opacity 1.2s var(--ease) 0.1s,
+      filter 1.2s var(--ease) 0.1s,
       transform 1.6s var(--ease) 0.1s;
   }
 

@@ -60,21 +60,21 @@
   gap: 1rem;
 }
 
-.columna ul {
+.lista {
   display: grid;
   gap: 0.15rem;
   margin: 0;
   padding: 0;
 }
 
-.columna li a {
+.lista li a {
   display: inline-block;
   padding: 0.4rem 0;
   color: var(--marfil-2);
   transition: color 0.3s;
 }
 
-.columna li a:hover {
+.lista li a:hover {
   color: var(--oro-200);
 }
 

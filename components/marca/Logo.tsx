@@ -26,7 +26,10 @@ export function Logo({
       src={logo}
       alt={decorativo ? "" : "MDL Vinilo Colombia"}
       sizes={sizes}
-      preload={preload}
+      // Imagen principal: carga inmediata y prioridad alta (recomendado por Next 16
+      // en lugar de preload). El resto, diferida.
+      loading={preload ? "eager" : "lazy"}
+      fetchPriority={preload ? "high" : undefined}
       quality={calidad}
       className={className}
       draggable={false}

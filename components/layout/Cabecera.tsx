@@ -9,6 +9,7 @@ import { Logo } from "@/components/marca/Logo";
 import { IconoCerrar, IconoSeleccion } from "@/components/ui/Iconos";
 import { RedesSociales } from "@/components/ui/RedesSociales";
 import { navegacion } from "./navegacion";
+import { bloquearFondo } from "@/lib/modal";
 import s from "./Cabecera.module.css";
 
 export function Cabecera() {
@@ -52,6 +53,7 @@ export function Cabecera() {
     if (!d) return;
     if (menu && !d.open) d.showModal();
     if (!menu && d.open) d.close();
+    bloquearFondo("menu", menu);
   }, [menu]);
 
   return (
@@ -78,7 +80,7 @@ export function Cabecera() {
         </nav>
 
         <div className={s.acciones}>
-          <button type="button" className={s.seleccion} onClick={abrir} aria-label={`Mi selección: ${listo ? total : 0} piezas`}>
+          <button type="button" className={s.seleccion} onClick={abrir} aria-label={`Selección ${listo ? total : 0} ${listo && total === 1 ? "pieza" : "piezas"}`}>
             <IconoSeleccion />
             <span className={s.seleccionTexto}>Selección</span>
             <span className={s.contador} data-activo={listo && total > 0 ? "" : undefined} aria-hidden="true">

@@ -59,9 +59,9 @@
 
 @keyframes aparecer {
   from {
-    opacity: 0;
+    opacity: 0.35;
     transform: scale(0.94);
-    filter: blur(6px) brightness(0.6);
+    filter: blur(6px) brightness(0.5);
   }
 }
 

@@ -28,3 +28,6 @@ desktop.ini
 /.vercel
 /.playwright-mcp
 /qa-capturas
+
+# configuración local del editor/agente
+/.claude

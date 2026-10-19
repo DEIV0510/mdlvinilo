@@ -44,7 +44,7 @@ export function Servicios() {
                     variante="enlace"
                     texto="Consultar este servicio"
                     mensaje={mensajes.servicio(sv.nombre)}
-                    ariaLabel={`Consultar el servicio de ${sv.nombre}`}
+                    ariaLabel={`Consultar este servicio: ${sv.nombre}`}
                     className={s.consultar}
                   />
                 </div>
