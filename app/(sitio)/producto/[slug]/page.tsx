@@ -96,7 +96,12 @@ export default async function ProductoPagina({ params }: Props) {
         </nav>
 
         <div className={s.producto}>
-          <div className={s.galeria}>
+          <div
+            className={s.galeria}
+            {...(imagenes.length > 1
+              ? { role: "region", "aria-label": `Fotos de ${p.nombre}`, tabIndex: 0 }
+              : {})}
+          >
             {imagenes.map((img, i) => (
               <div key={img?.src ?? "lamina"} className={s.foto}>
                 <Foto

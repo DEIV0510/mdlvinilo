@@ -62,7 +62,7 @@ export function BotonConsulta({
       rel="noopener noreferrer"
       className={crudo ? className : clasesBoton(variante, { compacto, ancho, className })}
       onClick={alPulsar}
-      aria-label={ariaLabel}
+      aria-label={ariaLabel ? `${ariaLabel} (se abre ${canal.nombre} en una pestaña nueva)` : undefined}
       data-canal={canal.tipo}
     >
       {sinIcono || crudo ? null : <Icono />}

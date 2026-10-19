@@ -36,7 +36,7 @@ export function Pie() {
         </div>
 
         <nav aria-label="Pie de página" className={s.columna}>
-          <p className="rotulo rotulo--oro">Explorar</p>
+          <h2 className="rotulo rotulo--oro">Explorar</h2>
           <ul role="list" className={s.lista}>
             {navegacion.map((n) => (
               <li key={n.href}>
@@ -46,8 +46,8 @@ export function Pie() {
           </ul>
         </nav>
 
-        <div className={s.columna}>
-          <p className="rotulo rotulo--oro">Legal</p>
+        <nav aria-label="Legal" className={s.columna}>
+          <h2 className="rotulo rotulo--oro">Legal</h2>
           <ul role="list" className={s.lista}>
             {enlacesLegales.map((n) => (
               <li key={n.href}>
@@ -55,10 +55,10 @@ export function Pie() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         <div className={s.columna}>
-          <p className="rotulo rotulo--oro">Redes oficiales</p>
+          <h2 className="rotulo rotulo--oro">Redes oficiales</h2>
           <RedesSociales />
           <p className={s.ubicacion}>
             {ubicacion.ciudad}, {ubicacion.departamento}, {ubicacion.pais}

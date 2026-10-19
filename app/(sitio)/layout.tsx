@@ -4,6 +4,7 @@ import { AvisoPendientes } from "@/components/dev/AvisoPendientes";
 import { Intro } from "@/components/intro/Intro";
 import { Cabecera } from "@/components/layout/Cabecera";
 import { Pie } from "@/components/layout/Pie";
+import { FocoAncla } from "@/components/ui/FocoAncla";
 import { Revelador } from "@/components/ui/Revelador";
 import { getProductos } from "@/lib/datos";
 
@@ -21,6 +22,7 @@ export default function SitioLayout({ children }: { children: React.ReactNode })
       <Pie />
       <PanelSeleccion slugsPublicados={getProductos().map((p) => p.slug)} />
       <Revelador />
+      <FocoAncla />
       <AvisoPendientes />
     </ConsultaProvider>
   );

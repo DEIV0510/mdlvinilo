@@ -86,7 +86,7 @@
 .datos {
   grid-column: 8 / -1;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
   margin: 0;
   border-top: 1px solid var(--linea);
   border-left: 1px solid var(--linea);
@@ -111,7 +111,9 @@
 
 .datoTexto {
   font-size: 0.6875rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   text-transform: uppercase;
   color: var(--texto-2);
 }

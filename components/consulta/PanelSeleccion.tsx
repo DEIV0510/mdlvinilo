@@ -16,7 +16,8 @@ import s from "./Seleccion.module.css";
  * publicada se muestra sin enlace (nunca lleva a una página inexistente).
  */
 export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] }) {
-  const { items, abierto, cerrar, cambiarCantidad, quitar, vaciar, aviso } = useConsulta();
+  const { items, abierto, cerrar, cambiarCantidad, quitar, vaciar, aviso, avisar } = useConsulta();
+  const titulo = useRef<HTMLHeadingElement>(null);
   const ref = useRef<HTMLDialogElement>(null);
   const areaMensaje = useRef<HTMLTextAreaElement>(null);
   const [copiado, setCopiado] = useState<"" | "ok" | "manual">("");
@@ -28,10 +29,16 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
     if (abierto && !d.open) d.showModal();
     if (!abierto && d.open) d.close();
     bloquearFondo("seleccion", abierto);
+    return () => bloquearFondo("seleccion", false);
   }, [abierto]);
 
   const mensaje = mensajes.lista(items);
   const canal = canalConsulta(mensaje);
+
+  /** Tras quitar o vaciar, el foco vuelve al título del panel (nunca se pierde). */
+  function enfocarTitulo() {
+    window.requestAnimationFrame(() => titulo.current?.focus());
+  }
 
   async function copiarMensaje() {
     try {
@@ -69,7 +76,7 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
         <div className={s.caja}>
           <header className={s.cabecera}>
             <p className="rotulo rotulo--oro">Lista de consulta</p>
-            <h2 id="seleccion-titulo" className={`display ${s.titulo}`}>
+            <h2 id="seleccion-titulo" ref={titulo} tabIndex={-1} className={`display ${s.titulo}`}>
               Mi <em>selección</em>
             </h2>
             <button type="button" className={s.cerrar} onClick={cerrar} aria-label="Cerrar mi selección">
@@ -110,8 +117,8 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
                     <div className={s.cantidad} role="group" aria-label={`Cantidad de ${it.nombre}`}>
                       <button
                         type="button"
-                        onClick={() => cambiarCantidad(it.id, it.cantidad - 1)}
-                        disabled={it.cantidad <= 1}
+                        onClick={() => it.cantidad > 1 && cambiarCantidad(it.id, it.cantidad - 1)}
+                        aria-disabled={it.cantidad <= 1 || undefined}
                         aria-label="Restar una unidad"
                       >
                         <IconoMenos />
@@ -119,8 +126,8 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
                       <output aria-live="polite">{it.cantidad}</output>
                       <button
                         type="button"
-                        onClick={() => cambiarCantidad(it.id, it.cantidad + 1)}
-                        disabled={it.cantidad >= 20}
+                        onClick={() => it.cantidad < 20 && cambiarCantidad(it.id, it.cantidad + 1)}
+                        aria-disabled={it.cantidad >= 20 || undefined}
                         aria-label="Sumar una unidad"
                       >
                         <IconoMas />
@@ -129,7 +136,11 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
                     <button
                       type="button"
                       className={s.quitar}
-                      onClick={() => quitar(it.id)}
+                      onClick={() => {
+                        quitar(it.id);
+                        avisar(`«${it.nombre}» se quitó de tu selección.`);
+                        enfocarTitulo();
+                      }}
                       aria-label={`Quitar ${it.nombre} de la selección`}
                     >
                       Quitar
@@ -182,7 +193,15 @@ export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] 
                     <BotonConsulta mensaje={mensaje} texto="Abrir chat de Instagram" ancho />
                   </>
                 )}
-                <button type="button" className={s.vaciar} onClick={vaciar}>
+                <button
+                  type="button"
+                  className={s.vaciar}
+                  onClick={() => {
+                    vaciar();
+                    avisar("Tu selección quedó vacía.");
+                    enfocarTitulo();
+                  }}
+                >
                   Vaciar selección
                 </button>
               </footer>

@@ -94,6 +94,8 @@
 }
 
 html {
+  /* Reserva el canal de la barra de desplazamiento: sin saltos al abrir diálogos */
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: calc(var(--cabecera) + 16px);
@@ -166,8 +168,8 @@ dd {
   margin: 0;
 }
 
-ul[role="list"],
-ol[role="list"] {
+/* Especificidad cero: los módulos pueden dar su propio relleno a las listas */
+:where(ul[role="list"], ol[role="list"]) {
   list-style: none;
   padding: 0;
 }
@@ -346,10 +348,7 @@ body::before {
   }
 }
 
-/* Sin JavaScript: el intro y los estados ocultos no existen */
-html:not(.js) .intro {
-  display: none;
-}
+/* Sin JavaScript los estados ocultos no existen (la intro tampoco: ver Intro.module.css) */
 
 /* El contenedor principal recibe el foco del enlace «Saltar al contenido» */
 main:focus {
@@ -360,4 +359,42 @@ main:focus {
    (atributo puesto por JS: evita el coste de html:has() en cada cambio del DOM) */
 html[data-modal] {
   overflow: hidden;
+}
+
+/* ─────────── Impresión (p. ej. textos legales) ─────────── */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body::before,
+  .intro,
+  .saltar,
+  header,
+  footer,
+  dialog,
+  nav[aria-label="Contenido del documento"] {
+    display: none !important;
+  }
+
+  .display,
+  .metal,
+  .display em {
+    color: #111 !important;
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: underline;
+  }
+
+  [data-revelar] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
 }

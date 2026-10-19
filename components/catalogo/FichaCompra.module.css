@@ -75,6 +75,10 @@
   outline-offset: 3px;
 }
 
+.opcionColor span {
+  padding-inline: 0.85rem;
+}
+
 .muestra {
   width: 0.9rem;
   height: 0.9rem;

@@ -2,22 +2,22 @@
   position: fixed;
   inset: 0;
   z-index: 150;
-  display: grid;
+  display: none;
   place-items: center;
   background:
     radial-gradient(60% 45% at 50% 48%, rgb(232 168 24 / 0.13), transparent 70%),
     var(--negro);
   pointer-events: none;
-  /* Red de seguridad sin JavaScript activo: se retira sola. */
+}
+
+/* Visible solo durante la carga inicial (clase puesta por el script) */
+:global(html.intro-activa) .intro {
+  display: grid;
+  /* Red de seguridad: se retira sola aunque algo falle */
   animation: retirada 0.6s var(--ease-in-out) 3s forwards;
 }
 
-.intro[data-oculto],
-:global(html.intro-omitida) .intro {
-  display: none;
-}
-
-:global(html.intro-fin) .intro {
+:global(html.intro-activa.intro-fin) .intro {
   animation: telon 0.85s var(--ease-in-out) forwards;
 }
 
@@ -145,7 +145,7 @@
     transform: scaleX(0.5);
   }
 
-  :global(html.intro-fin) .intro {
+  :global(html.intro-activa.intro-fin) .intro {
     animation: retirada 0.25s linear forwards;
   }
 }

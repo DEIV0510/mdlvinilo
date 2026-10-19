@@ -67,10 +67,30 @@ export const viewport: Viewport = {
 };
 
 /**
- * Se ejecuta antes del primer pintado: activa las mejoras con JavaScript y,
- * como red de seguridad, las retira si la aplicación no llega a hidratarse.
+ * Se ejecuta antes del primer pintado y solo en cargas completas (nunca en
+ * navegación interna):
+ * - Activa las mejoras con JavaScript (html.js) y las retira si la app no
+ *   llega a hidratarse (red de seguridad a los 4,5 s).
+ * - Pantalla de carga: se muestra (html.intro-activa) solo si la página la
+ *   tiene y no se vio en esta sesión; se retira en cuanto fuentes e imagen
+ *   principal están listas, como máximo a los 2,2 s (respaldo CSS a los 3 s).
  */
-const scriptInicial = `(function(){var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(!d.classList.contains('revelar-listo')){d.classList.remove('js');d.classList.add('intro-fin');}},4500);})();`;
+const scriptInicial = `(function(){var d=document.documentElement;d.classList.add('js');
+setTimeout(function(){if(!d.classList.contains('revelar-listo')&&document.querySelector('[data-revelar]')){d.classList.remove('js');d.classList.add('intro-fin');}},4500);
+var visto=false;try{visto=sessionStorage.getItem('mdl-intro-vista')==='1';}catch(e){}
+if(visto){d.classList.add('intro-fin');return;}
+d.classList.add('intro-activa');
+function quitar(){d.classList.remove('intro-activa');}
+function fin(){if(d.classList.contains('intro-fin'))return;d.classList.add('intro-fin');if(window.performance&&performance.now()>2800){quitar();return;}setTimeout(quitar,900);}
+var tope=setTimeout(fin,2200);
+document.addEventListener('DOMContentLoaded',function(){
+if(!document.getElementById('intro')){clearTimeout(tope);quitar();return;}
+try{sessionStorage.setItem('mdl-intro-vista','1');}catch(e){}
+var esperas=[];if(document.fonts&&document.fonts.ready)esperas.push(document.fonts.ready);
+var img=document.querySelector('img[data-lcp]');
+if(img&&!img.complete)esperas.push(new Promise(function(r){img.addEventListener('load',r,{once:true});img.addEventListener('error',r,{once:true});}));
+Promise.all(esperas).then(function(){clearTimeout(tope);fin();},fin);},{once:true});
+})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

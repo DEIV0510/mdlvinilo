@@ -32,7 +32,7 @@ export function Contacto() {
         </div>
 
         <div className={s.redes} data-revelar style={{ "--orden": 2 } as React.CSSProperties}>
-          <p className="rotulo">Redes oficiales</p>
+          <h3 className="rotulo">Redes oficiales</h3>
           <RedesSociales conUsuario />
         </div>
       </div>

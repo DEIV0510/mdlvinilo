@@ -94,7 +94,7 @@
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
   list-style: none;
-  padding: 0 !important;
+  padding: 0;
 }
 
 .redes a {

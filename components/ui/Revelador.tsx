@@ -14,6 +14,8 @@ export function Revelador() {
   useEffect(() => {
     const raiz = document.documentElement;
     raiz.classList.add("revelar-listo");
+    // Llegada por navegación interna (sin intro): la portada debe animarse igualmente.
+    if (!raiz.classList.contains("intro-activa")) raiz.classList.add("intro-fin");
     const pendientes = Array.from(document.querySelectorAll<HTMLElement>("[data-revelar]:not(.visto)"));
     if (!("IntersectionObserver" in window)) {
       pendientes.forEach((el) => el.classList.add("visto"));

@@ -72,7 +72,6 @@
 .seccion {
   display: grid;
   gap: 1rem;
-  scroll-margin-top: calc(var(--cabecera) + 1.5rem);
   color: var(--marfil-2);
   line-height: 1.7;
 }

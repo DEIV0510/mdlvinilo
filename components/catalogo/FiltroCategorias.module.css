@@ -2,6 +2,7 @@
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
   border-block: 1px solid var(--linea);
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
 }
 
@@ -15,7 +16,7 @@
   width: max-content;
   min-width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 6px;
 }
 
 .filtro a {
@@ -39,7 +40,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -1px;
+  bottom: 0;
   height: 2px;
   background: var(--oro-300);
   transform: scaleX(0);
@@ -61,4 +62,14 @@
 .conteo {
   font-size: 0.625rem;
   color: var(--texto-3);
+}
+
+.filtro a:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filtro a::after {
+    transition: none;
+  }
 }

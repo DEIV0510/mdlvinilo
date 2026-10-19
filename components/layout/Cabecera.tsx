@@ -54,6 +54,7 @@ export function Cabecera() {
     if (menu && !d.open) d.showModal();
     if (!menu && d.open) d.close();
     bloquearFondo("menu", menu);
+    return () => bloquearFondo("menu", false);
   }, [menu]);
 
   return (
@@ -80,12 +81,14 @@ export function Cabecera() {
         </nav>
 
         <div className={s.acciones}>
-          <button type="button" className={s.seleccion} onClick={abrir} aria-label={`Selección ${listo ? total : 0} ${listo && total === 1 ? "pieza" : "piezas"}`}>
+          {/* Nombre accesible = texto visible («Selección 2») + «piezas» solo para lectores */}
+          <button type="button" className={s.seleccion} onClick={abrir}>
             <IconoSeleccion />
             <span className={s.seleccionTexto}>Selección</span>
-            <span className={s.contador} data-activo={listo && total > 0 ? "" : undefined} aria-hidden="true">
+            <span className={s.contador} data-activo={listo && total > 0 ? "" : undefined}>
               {listo ? total : 0}
             </span>
+            <span className="sr-only">{listo && total === 1 ? " pieza" : " piezas"}</span>
           </button>
           <BotonConsulta compacto variante="secundario" texto="Consultar" className={s.consultar} />
           <button
@@ -107,7 +110,8 @@ export function Cabecera() {
       <dialog id="menu-movil" ref={dialogo} className={s.menu} aria-label="Menú" onClose={() => setMenu(false)}>
         <div className={s.menuCaja}>
           <div className={s.menuCabecera}>
-            <Logo sizes="96px" decorativo className={s.logoMenu} />
+            {/* Solo con el menú abierto: evita descargar y medir una imagen oculta */}
+            {menu ? <Logo sizes="96px" decorativo className={s.logoMenu} /> : <span className={s.logoMenu} />}
             <button type="button" className={s.cerrar} onClick={() => setMenu(false)} aria-label="Cerrar menú">
               <IconoCerrar />
             </button>
@@ -124,7 +128,8 @@ export function Cabecera() {
               ))}
             </ol>
           </nav>
-          <div className={s.menuPie}>
+          {/* Al abrir un canal externo se cierra el menú (el aviso de copiado queda visible) */}
+          <div className={s.menuPie} onClick={(e) => (e.target as Element).closest("a") && setMenu(false)}>
             <BotonConsulta ancho />
             <RedesSociales />
           </div>

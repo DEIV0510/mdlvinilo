@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { AvisoConsulta } from "@/components/consulta/AvisoConsulta";
+import { ConsultaProvider } from "@/components/consulta/ConsultaProvider";
+import { FocoAncla } from "@/components/ui/FocoAncla";
 import { Logo } from "@/components/marca/Logo";
 import { Pie } from "@/components/layout/Pie";
 import s from "./legal.module.css";
@@ -6,7 +9,7 @@ import s from "./legal.module.css";
 /** Páginas legales: accesibles sin declarar la edad, con cabecera mínima. */
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <ConsultaProvider>
       <a href="#contenido" className="saltar">
         Saltar al contenido
       </a>
@@ -22,6 +25,8 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         {children}
       </main>
       <Pie />
-    </>
+      <AvisoConsulta />
+      <FocoAncla />
+    </ConsultaProvider>
   );
 }

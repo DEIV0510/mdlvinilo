@@ -62,6 +62,7 @@ export function Boton({
     return (
       <a href={href} className={clase} target="_blank" rel="noopener noreferrer" {...rest}>
         {contenido}
+        <span className="sr-only"> (se abre en una pestaña nueva)</span>
       </a>
     );
   }

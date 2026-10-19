@@ -186,7 +186,7 @@
   justify-self: end;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .nav {
     display: none;
   }
@@ -205,9 +205,18 @@
 }
 
 @media (max-width: 640px) {
-  .consultar,
-  .seleccionTexto {
+  .consultar {
     display: none;
+  }
+
+  /* Oculto a la vista pero presente para lectores de pantalla */
+  .seleccionTexto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .marca {

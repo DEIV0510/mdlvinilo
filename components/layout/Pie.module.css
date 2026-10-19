@@ -19,7 +19,7 @@
 
 .marquesina span {
   display: inline-block;
-  font-size: clamp(2.2rem, 9.2vw, 9rem);
+  font-size: min(9.2vw, 9rem);
   line-height: 0.85;
   color: transparent;
   -webkit-text-stroke: 1px rgb(232 168 24 / 0.38);
