@@ -16,7 +16,8 @@ export default function SitioLayout({ children }: { children: React.ReactNode })
       </a>
       <Intro />
       <Cabecera />
-      <main id="contenido" tabIndex={-1}>
+      {/* Contenido en marfil; la portada marca sus secciones oscuras */}
+      <main id="contenido" tabIndex={-1} className="claro">
         {children}
       </main>
       <Pie />

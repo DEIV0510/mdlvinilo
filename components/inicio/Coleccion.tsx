@@ -11,7 +11,7 @@ export function Coleccion() {
   const total = getProductos().length;
 
   return (
-    <section id="coleccion" className={s.seccion} aria-labelledby="coleccion-titulo">
+    <section id="coleccion" className={`${s.seccion} oscuro`} aria-labelledby="coleccion-titulo">
       <div className="contenedor">
         <Encabezado
           id="coleccion-titulo"

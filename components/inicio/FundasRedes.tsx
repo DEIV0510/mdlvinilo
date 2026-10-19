@@ -38,7 +38,7 @@ export function FundasRedes() {
       <ul className={s.fundas} role="list">
         {fundas.map(({ id, lado, red, usuario, url, Icono }, i) => (
           <li key={id} className={s.item} data-revelar style={{ "--orden": i } as React.CSSProperties}>
-            <a href={url} target="_blank" rel="noopener noreferrer me" className={s.funda}>
+            <a href={url} target="_blank" rel="noopener noreferrer me" className={`${s.funda} oscuro`}>
               <span className={s.disco} aria-hidden="true">
                 <span className={s.surcos} />
                 <span className={s.brillo} />

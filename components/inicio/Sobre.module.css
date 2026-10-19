@@ -1,11 +1,10 @@
 .seccion {
   position: relative;
-  margin-top: var(--seccion);
   padding-block: var(--seccion);
   border-block: 1px solid var(--linea);
   background:
-    radial-gradient(50% 70% at 85% 30%, rgb(232 168 24 / 0.09), transparent 70%),
-    var(--negro);
+    radial-gradient(50% 70% at 85% 30%, rgb(232 168 24 / 0.16), transparent 70%),
+    var(--fondo);
   overflow: hidden;
   isolation: isolate;
 }
@@ -21,7 +20,7 @@
   font-size: clamp(9rem, 30vw, 30rem);
   line-height: 0.8;
   /* Relleno muy tenue (sin contorno: evita trazos internos de la fuente variable) */
-  color: rgb(232 168 24 / 0.06);
+  color: rgb(168 120 24 / 0.09);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -100,7 +99,7 @@
   padding: clamp(1.25rem, 2.5vw, 2rem);
   border-right: 1px solid var(--linea);
   border-bottom: 1px solid var(--linea);
-  background: rgb(5 5 5 / 0.55);
+  background: color-mix(in srgb, var(--fondo-2) 75%, transparent);
 }
 
 .datoValor {

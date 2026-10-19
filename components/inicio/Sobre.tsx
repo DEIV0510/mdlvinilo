@@ -13,7 +13,7 @@ export function Sobre() {
   ];
 
   return (
-    <section id="vinilo" className={s.seccion} aria-labelledby="vinilo-titulo">
+    <section id="vinilo" className={`${s.seccion} claro`} aria-labelledby="vinilo-titulo">
       <span className={s.fondoPalabra} aria-hidden="true">
         Vinilo
       </span>

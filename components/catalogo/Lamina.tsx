@@ -20,7 +20,7 @@ export function Lamina({
   // Sin letra inicial utilizable, se usa la «V» de Vinilo.
   const inicial = /[a-záéíóúñ]/i.test(primera) ? primera : "V";
   return (
-    <div className={`${s.lamina} ${className ?? ""}`} style={{ aspectRatio: proporcion }} role="img" aria-label={`${nombre}: ${rotulo.toLowerCase()}`}>
+    <div className={`${s.lamina} oscuro ${className ?? ""}`} style={{ aspectRatio: proporcion }} role="img" aria-label={`${nombre}: ${rotulo.toLowerCase()}`}>
       <span className={s.surcos} aria-hidden="true" />
       <span className={`display ${s.inicial}`} aria-hidden="true">
         {inicial.toUpperCase()}

@@ -83,7 +83,7 @@
   width: 0.9rem;
   height: 0.9rem;
   border-radius: 50%;
-  border: 1px solid rgb(243 235 221 / 0.4);
+  border: 1px solid color-mix(in srgb, var(--marfil) 40%, transparent);
 }
 
 .acciones {

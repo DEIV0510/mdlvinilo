@@ -10,7 +10,7 @@ export function Servicios() {
   const servicios = getServicios();
 
   return (
-    <section id="servicios" className={s.seccion} aria-labelledby="servicios-titulo">
+    <section id="servicios" className={`${s.seccion} oscuro`} aria-labelledby="servicios-titulo">
       <div className="contenedor">
         <Encabezado
           id="servicios-titulo"

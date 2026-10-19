@@ -8,7 +8,7 @@ import s from "./Contacto.module.css";
 export function Contacto() {
   const { ubicacion } = sitio;
   return (
-    <section id="contacto" className={s.seccion} aria-labelledby="contacto-titulo">
+    <section id="contacto" className={`${s.seccion} oscuro`} aria-labelledby="contacto-titulo">
       <div className={`contenedor ${s.rejilla}`}>
         <div className={s.principal}>
           <div className={s.meta} data-revelar>

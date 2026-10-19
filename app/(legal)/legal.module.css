@@ -38,5 +38,5 @@
 }
 
 .principal {
-  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem) var(--seccion);
 }

@@ -27,7 +27,7 @@ export function Novedades() {
   const [portada, ...resto] = lista;
 
   return (
-    <section id="novedades" className={s.seccion} aria-labelledby="novedades-titulo">
+    <section id="novedades" className={`${s.seccion} claro`} aria-labelledby="novedades-titulo">
       <div className="contenedor">
         <Encabezado
           id="novedades-titulo"

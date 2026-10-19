@@ -11,7 +11,7 @@ export function Talento() {
   const perfiles = getTalento();
 
   return (
-    <section id="talento" className={s.seccion} aria-labelledby="talento-titulo">
+    <section id="talento" className={`${s.seccion} claro`} aria-labelledby="talento-titulo">
       <div className="contenedor">
         <Encabezado
           id="talento-titulo"

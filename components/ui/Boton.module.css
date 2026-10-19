@@ -69,7 +69,7 @@
 .secundario {
   color: var(--marfil);
   border: 1px solid var(--linea-fuerte);
-  background: rgb(5 5 5 / 0.35);
+  background: color-mix(in srgb, var(--fondo) 40%, transparent);
 }
 
 .secundario:hover,

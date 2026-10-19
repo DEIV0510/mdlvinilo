@@ -42,7 +42,7 @@ export function VideoRotacion({ video }: { video: VideoMarca }) {
   }
 
   return (
-    <figure className={s.reel} data-revelar>
+    <figure className={`${s.reel} oscuro`} data-revelar>
       <div className={s.pantalla} style={{ aspectRatio: `${video.ancho} / ${video.alto}` }}>
         <Image src={video.poster} alt="" fill sizes="(max-width: 1024px) 20rem, 24rem" className={s.poster} />
         <video

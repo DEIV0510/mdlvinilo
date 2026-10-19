@@ -1,6 +1,7 @@
 /* Estilos compartidos por las páginas internas del sitio */
 .pagina {
   padding-top: calc(var(--cabecera) + clamp(2.5rem, 6vw, 5rem));
+  padding-bottom: var(--seccion);
 }
 
 .migas {

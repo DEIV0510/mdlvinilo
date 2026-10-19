@@ -1,5 +1,5 @@
 .seccion {
-  padding-top: var(--seccion);
+  padding-block: var(--seccion);
 }
 
 .portada {

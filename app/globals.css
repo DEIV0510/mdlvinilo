@@ -4,13 +4,16 @@
    Colores dorados muestreados del logotipo original.
    ═══════════════════════════════════════════════════════════════ */
 
-:root {
-  /* Negros */
+/* Colores del tema oscuro. .oscuro los recupera dentro de una sección clara
+   (fundas de disco, video, láminas). */
+:root,
+.oscuro {
+  /* Negros cálidos (no negro puro) */
   --negro: #000;
-  --fondo: #050505;
-  --fondo-2: #0b0a08;
-  --superficie: #12100c;
-  --superficie-2: #1a1711;
+  --fondo: #0d0b08;
+  --fondo-2: #15120d;
+  --superficie: #1c1813;
+  --superficie-2: #252019;
 
   /* Oro (del logotipo) */
   --oro-50: #fff4cc;
@@ -57,6 +60,53 @@
     #f8d858 100%
   );
 
+  color-scheme: dark;
+}
+
+/* Tema marfil: papel cálido, tinta oscura y oro profundo (contraste AA).
+   Los nombres se conservan: aquí --marfil es la tinta y --fondo el papel. */
+.claro {
+  --fondo: #f4ecdf;
+  --fondo-2: #ebe1cf;
+  --superficie: #e4d7c1;
+  --superficie-2: #d9cab0;
+
+  --oro-50: #4a3100;
+  --oro-200: #774e00;
+  --oro-300: #7f5400;
+  --oro-400: #855800;
+  --oro-500: #a87818;
+  --oro-700: #8a5d00;
+
+  --marfil: #19130b;
+  --marfil-2: #3d3327;
+  --texto-2: #574b3b;
+  --texto-3: #685c49;
+
+  --linea: rgb(133 88 0 / 0.3);
+  --linea-suave: rgb(25 19 11 / 0.1);
+  --linea-fuerte: rgb(133 88 0 / 0.6);
+
+  /* Oro para texto grande sobre papel: sin tonos claros ilegibles */
+  --metal-texto: linear-gradient(
+    100deg,
+    #6e4600 0%,
+    #a87818 28%,
+    #5c3a00 50%,
+    #a87818 72%,
+    #6e4600 100%
+  );
+
+  color-scheme: light;
+}
+
+/* Fondo y tinta del tema (sin especificidad: los módulos pueden cambiarlos) */
+:where(.claro, .oscuro) {
+  background-color: var(--fondo);
+  color: var(--marfil);
+}
+
+:root {
   /* Tipografía (las variables --f-* las define next/font en <html>) */
   /* Serif editorial (acentos en cursiva, nombres, cifras) */
   --display: var(--f-fraunces), Georgia, "Times New Roman", serif;
@@ -90,8 +140,6 @@
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur: 0.9s;
-
-  color-scheme: dark;
 }
 
 /* ─────────── Reset ─────────── */

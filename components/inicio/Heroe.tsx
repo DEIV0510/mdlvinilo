@@ -14,7 +14,7 @@ const indice = [
 
 export function Heroe() {
   return (
-    <section className={s.heroe} aria-labelledby="heroe-titulo">
+    <section className={`${s.heroe} oscuro`} aria-labelledby="heroe-titulo">
       <div className={s.fondo} aria-hidden="true" />
 
       <div className={s.rejilla}>

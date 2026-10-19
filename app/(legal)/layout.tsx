@@ -21,8 +21,8 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           Volver al sitio
         </Link>
       </header>
-      <main id="contenido" tabIndex={-1} className={`contenedor ${s.principal}`}>
-        {children}
+      <main id="contenido" tabIndex={-1} className={`claro ${s.principal}`}>
+        <div className="contenedor">{children}</div>
       </main>
       <Pie />
       <AvisoConsulta />
