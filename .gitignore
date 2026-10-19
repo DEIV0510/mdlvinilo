@@ -32,3 +32,7 @@ desktop.ini
 # configuración local del editor/agente
 /.claude
 /qa
+
+# Videos originales (la versión optimizada para la web está en public/media)
+/*.mp4
+/*.mov

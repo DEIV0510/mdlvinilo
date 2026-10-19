@@ -8,7 +8,7 @@
  *
  *  Variables de entorno opcionales (tienen prioridad):
  *    NEXT_PUBLIC_SITE_URL       Dominio definitivo, p. ej. https://mdlvinilo.com
- *    NEXT_PUBLIC_WHATSAPP       Número en formato internacional sin "+", p. ej. 57300XXXXXXX
+ *    NEXT_PUBLIC_WHATSAPP       Otro número en formato internacional sin "+", p. ej. 57300XXXXXXX
  */
 
 export const sitio = {
@@ -36,19 +36,26 @@ export const sitio = {
 
   whatsapp: {
     /**
-     * PENDIENTE: número oficial de WhatsApp en formato internacional sin "+"
-     * ni espacios (Colombia empieza por 57). Mientras esté vacío, los botones
-     * de consulta abren el chat de Instagram de la marca.
+     * Número oficial de WhatsApp, confirmado por la empresa, en formato
+     * internacional sin "+" ni espacios (57 = Colombia). Si se deja vacío,
+     * los botones de consulta abren el chat de Instagram de la marca.
      */
-    numero: process.env.NEXT_PUBLIC_WHATSAPP ?? "",
+    numero: process.env.NEXT_PUBLIC_WHATSAPP || "573160998998",
     mensajeGeneral: "Hola, quiero conocer los productos y servicios de MDL Vinilo Colombia.",
+    /**
+     * Canal de las consultas de talento (campañas y colaboraciones).
+     * "instagram" las envía al chat de Instagram para no exponer el número de
+     * WhatsApp Business a su política sobre servicios para adultos; con
+     * "whatsapp" usan el mismo número que la tienda.
+     */
+    talento: "instagram" as "instagram" | "whatsapp",
   },
 
   redes: {
     instagram: {
       usuario: "mdlvinilocol",
       url: "https://www.instagram.com/mdlvinilocol/",
-      /** Enlace directo al chat de Instagram (se usa si no hay WhatsApp). */
+      /** Enlace directo al chat de Instagram (talento, o todo si no hay WhatsApp). */
       chat: "https://ig.me/m/mdlvinilocol",
     },
     tiktok: {

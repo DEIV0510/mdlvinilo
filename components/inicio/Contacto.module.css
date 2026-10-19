@@ -53,6 +53,71 @@
   font-size: 0.875rem;
 }
 
+/* Canales directos: número de WhatsApp visible y chat de Instagram */
+.canales {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 0 clamp(1.5rem, 4vw, 3.5rem);
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.canal {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--linea-fuerte);
+  transition: border-color 0.3s;
+}
+
+.canalRed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro-400);
+}
+
+.canalRed svg {
+  font-size: 0.95rem;
+}
+
+.canalDato {
+  font-family: var(--titular);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 0.95rem + 0.8vw, 1.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--marfil);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.canalCursiva {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1.05rem + 0.9vw, 1.85rem);
+  letter-spacing: -0.02em;
+  color: var(--oro-200);
+}
+
+.canalUso {
+  font-size: var(--t-sm);
+  color: var(--texto-2);
+}
+
+.canal:hover {
+  border-color: var(--oro-300);
+}
+
+.canal:hover .canalDato {
+  color: var(--oro-200);
+}
+
 .ubicacion {
   display: inline-flex;
   align-items: center;
@@ -84,6 +149,14 @@
 
   .cta,
   .cta > a {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .canales {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
     width: 100%;
   }
 }

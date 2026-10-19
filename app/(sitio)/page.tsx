@@ -8,7 +8,7 @@ import { Sobre } from "@/components/inicio/Sobre";
 import { Talento } from "@/components/inicio/Talento";
 import { sitio } from "@/config/sitio";
 import type { Metadata } from "next";
-import { redesOficiales } from "@/lib/contacto";
+import { hayWhatsapp, numeroVisible, redesOficiales } from "@/lib/contacto";
 import { canonica } from "@/lib/seo";
 
 export const metadata: Metadata = { alternates: canonica("/") };
@@ -31,6 +31,15 @@ function datosEstructurados() {
     },
     sameAs: redesOficiales().map((r) => r.url),
   };
+  if (hayWhatsapp()) {
+    org.contactPoint = {
+      "@type": "ContactPoint",
+      telephone: numeroVisible().replace(/ /g, "-"),
+      contactType: "sales",
+      areaServed: sitio.ubicacion.paisCodigo,
+      availableLanguage: "es",
+    };
+  }
   if (sitio.dominio) {
     org.url = sitio.dominio;
     org.logo = `${sitio.dominio.replace(/\/$/, "")}/brand/icon-512.png`;

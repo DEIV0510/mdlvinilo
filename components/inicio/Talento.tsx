@@ -2,7 +2,7 @@ import { BotonConsulta } from "@/components/consulta/BotonConsulta";
 import { TarjetaTalento } from "@/components/talento/TarjetaTalento";
 import { Boton } from "@/components/ui/Boton";
 import { Encabezado } from "@/components/ui/Encabezado";
-import { mensajes } from "@/lib/contacto";
+import { mensajes, viaTalento } from "@/lib/contacto";
 import { getTalento } from "@/lib/datos";
 import { indice } from "@/lib/formato";
 import s from "./Talento.module.css";
@@ -49,14 +49,14 @@ export function Talento() {
               Publicamos solo talento con vínculo comercial y autorización expresa. Para campañas,
               colaboraciones o promoción comercial, escríbenos.
             </p>
-            <BotonConsulta variante="secundario" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />
+            <BotonConsulta variante="secundario" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} via={viaTalento} />
           </div>
         )}
 
         {perfiles.length ? (
           <div className={s.cierre} data-revelar>
             <p>¿Una campaña, una colaboración o una promoción comercial?</p>
-            <BotonConsulta variante="principal" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />
+            <BotonConsulta variante="principal" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} via={viaTalento} />
           </div>
         ) : null}
       </div>

@@ -294,3 +294,173 @@
     transform: none;
   }
 }
+
+/* ─────────── Video en rotación ─────────── */
+.conVideo {
+  grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
+  grid-template-areas:
+    "reel fundas"
+    "reel lateral";
+  align-items: start;
+  row-gap: clamp(2rem, 4vw, 3rem);
+}
+
+.conVideo .fundas {
+  grid-area: fundas;
+}
+
+.conVideo .lateral {
+  grid-area: lateral;
+}
+
+.reel {
+  grid-area: reel;
+  margin: 0;
+  min-width: 0;
+}
+
+.pantalla {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b0a08;
+  border: 1px solid var(--linea-fuerte);
+  box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.9);
+}
+
+/* Velo para leer los rótulos y filete interior, como en las fundas */
+.pantalla::before,
+.pantalla::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pantalla::before {
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(5 5 5 / 0.5),
+    transparent 20%,
+    transparent 78%,
+    rgb(5 5 5 / 0.6)
+  );
+}
+
+.pantalla::after {
+  inset: 8px;
+  border: 1px solid rgb(232 168 24 / 0.18);
+}
+
+.poster,
+.video {
+  object-fit: cover;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.enRotacion {
+  position: absolute;
+  z-index: 2;
+  top: 1.1rem;
+  left: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--marfil);
+}
+
+.piloto {
+  width: 0.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--oro-400);
+  box-shadow: 0 0 0 3px rgb(232 168 24 / 0.2);
+}
+
+.piloto[data-activo] {
+  animation: piloto 1.6s ease-in-out infinite;
+}
+
+@keyframes piloto {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.control {
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: var(--metal-boton);
+  color: #140c00;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.5);
+  transition: transform 0.3s var(--ease);
+}
+
+.control:hover {
+  transform: scale(1.07);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--oro-200);
+  outline-offset: 3px;
+}
+
+/* Tableta: el texto y las acciones junto al video; las fundas debajo */
+@media (max-width: 1024px) {
+  .conVideo {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    grid-template-areas:
+      "reel lateral"
+      "fundas fundas";
+  }
+
+  .conVideo .lateral {
+    align-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .conVideo {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "reel"
+      "fundas"
+      "lateral";
+  }
+
+  .reel {
+    width: 100%;
+    max-width: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piloto[data-activo] {
+    animation: none;
+  }
+
+  .control {
+    transition: none;
+  }
+}

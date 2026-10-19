@@ -3,6 +3,7 @@ import { sitio } from "@/config/sitio";
 import { BotonConsulta } from "@/components/consulta/BotonConsulta";
 import { Logo } from "@/components/marca/Logo";
 import { RedesSociales } from "@/components/ui/RedesSociales";
+import { canalConsulta, hayWhatsapp, numeroVisible } from "@/lib/contacto";
 import { enlacesLegales, navegacion } from "./navegacion";
 import s from "./Pie.module.css";
 
@@ -60,6 +61,12 @@ export function Pie() {
         <div className={s.columna}>
           <h2 className="rotulo rotulo--oro">Redes oficiales</h2>
           <RedesSociales />
+          {hayWhatsapp() ? (
+            <a href={canalConsulta().href} target="_blank" rel="noopener noreferrer" className={s.whatsapp}>
+              WhatsApp <span>{numeroVisible()}</span>
+              <span className="sr-only"> (se abre en una pestaña nueva)</span>
+            </a>
+          ) : null}
           <p className={s.ubicacion}>
             {ubicacion.ciudad}, {ubicacion.departamento}, {ubicacion.pais}
           </p>

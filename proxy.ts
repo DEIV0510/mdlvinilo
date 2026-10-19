@@ -71,8 +71,8 @@ function sinCache(res: NextResponse) {
 export const config = {
   matcher: [
     // Todo excepto recursos estáticos e imágenes optimizadas de Next y archivos
-    // públicos por extensión conocida (iconos, imágenes, robots.txt, sitemap.xml,
+    // públicos por extensión conocida (iconos, imágenes, videos, robots.txt, sitemap.xml,
     // manifest, fuentes). Las rutas .rsc/.segments de Next SÍ pasan por el control.
-    "/((?!_next/static|_next/image|.*\\.(?:png|jpe?g|webp|avif|gif|svg|ico|txt|xml|webmanifest|woff2?|map)$).*)",
+    "/((?!_next/static|_next/image|.*\\.(?:png|jpe?g|webp|avif|gif|svg|ico|mp4|webm|txt|xml|webmanifest|woff2?|map)$).*)",
   ],
 };

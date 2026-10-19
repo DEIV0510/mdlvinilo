@@ -1,15 +1,16 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { canalConsulta } from "@/lib/contacto";
+import { canalConsulta, type TipoCanal } from "@/lib/contacto";
 import { clasesBoton, type VarianteBoton } from "@/components/ui/Boton";
 import { IconoInstagram, IconoWhatsapp } from "@/components/ui/Iconos";
 import { useConsultaOpcional } from "./ConsultaProvider";
 
 /**
  * Botón de consulta comercial. Abre WhatsApp con el mensaje precargado
- * (incluye el producto o servicio). Si aún no hay número configurado, abre
- * el chat de Instagram y copia el mensaje al portapapeles para pegarlo.
+ * (incluye el producto o servicio). Sin número configurado, o con
+ * via="instagram", abre el chat de Instagram y copia el mensaje al
+ * portapapeles para pegarlo.
  *
  * `texto` admite el marcador {canal}: «Consultar por {canal}».
  */
@@ -23,6 +24,7 @@ export function BotonConsulta({
   sinIcono,
   ariaLabel,
   crudo,
+  via,
   children,
 }: {
   mensaje?: string;
@@ -35,9 +37,11 @@ export function BotonConsulta({
   ariaLabel?: string;
   /** Sin estilo de botón: solo la clase recibida y el contenido (children). */
   crudo?: boolean;
+  /** Fuerza un canal (p. ej. Instagram para talento). */
+  via?: TipoCanal;
   children?: ReactNode;
 }) {
-  const canal = canalConsulta(mensaje);
+  const canal = canalConsulta(mensaje, via);
   const consulta = useConsultaOpcional();
   const etiqueta = texto.replace("{canal}", canal.nombre);
   const Icono = canal.tipo === "whatsapp" ? IconoWhatsapp : IconoInstagram;

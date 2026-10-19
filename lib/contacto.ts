@@ -2,9 +2,9 @@ import { sitio } from "@/config/sitio";
 
 /**
  * Canal de consulta comercial. Si hay número de WhatsApp configurado se usa
- * WhatsApp con el mensaje precargado; si no, el chat de Instagram de la
- * marca (que no admite texto precargado: el mensaje se copia al
- * portapapeles desde el botón).
+ * WhatsApp con el mensaje precargado; si no (o si la consulta pide
+ * Instagram, como la de talento), el chat de Instagram de la marca, que no
+ * admite texto precargado: el mensaje se copia al portapapeles desde el botón.
  */
 export type TipoCanal = "whatsapp" | "instagram";
 
@@ -24,8 +24,19 @@ export function hayWhatsapp(): boolean {
   return numeroWhatsapp().length >= 10;
 }
 
-export function canalConsulta(mensaje: string = sitio.whatsapp.mensajeGeneral): Canal {
-  if (hayWhatsapp()) {
+/** «+57 316 099 8998» a partir de «573160998998». */
+export function numeroVisible(): string {
+  const n = numeroWhatsapp();
+  const m = /^57(\d{3})(\d{3})(\d{4})$/.exec(n);
+  return m ? `+57 ${m[1]} ${m[2]} ${m[3]}` : `+${n}`;
+}
+
+/** Canal fijado para las consultas de talento (undefined = el general). */
+export const viaTalento: TipoCanal | undefined =
+  sitio.whatsapp.talento === "instagram" ? "instagram" : undefined;
+
+export function canalConsulta(mensaje: string = sitio.whatsapp.mensajeGeneral, via?: TipoCanal): Canal {
+  if (via !== "instagram" && hayWhatsapp()) {
     return {
       tipo: "whatsapp",
       href: `https://wa.me/${numeroWhatsapp()}?text=${encodeURIComponent(mensaje)}`,

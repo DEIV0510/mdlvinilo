@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BotonConsulta } from "@/components/consulta/BotonConsulta";
 import { TarjetaTalento } from "@/components/talento/TarjetaTalento";
 import { Encabezado } from "@/components/ui/Encabezado";
-import { mensajes } from "@/lib/contacto";
+import { mensajes, viaTalento } from "@/lib/contacto";
 import { getTalento } from "@/lib/datos";
 import { indice } from "@/lib/formato";
 import { canonica } from "@/lib/seo";
@@ -35,7 +35,7 @@ export default function TalentoPagina() {
           </>
         }
         entrada="No es un directorio abierto: aquí aparecen únicamente modelos adultas con vínculo comercial formal con la marca y autorización expresa para publicar su imagen."
-        accion={<BotonConsulta variante="secundario" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />}
+        accion={<BotonConsulta variante="secundario" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} via={viaTalento} />}
       />
 
       {perfiles.length ? (
@@ -55,7 +55,7 @@ export default function TalentoPagina() {
             Estamos preparando los perfiles autorizados. Para campañas, colaboraciones o promoción comercial,
             escríbenos.
           </p>
-          <BotonConsulta texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />
+          <BotonConsulta texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} via={viaTalento} />
         </div>
       )}
 

@@ -57,6 +57,18 @@ export interface Novedad {
   demo?: boolean;
 }
 
+/** Video vertical propio de la marca (se reproduce sin sonido y en bucle). */
+export interface VideoMarca {
+  /** MP4 H.264 sin audio en public/, p. ej. "/media/video.mp4". */
+  src: string;
+  /** Primer fotograma en JPG, visible mientras el video carga. */
+  poster: string;
+  ancho: number;
+  alto: number;
+  /** Qué se ve en el video, para lectores de pantalla. */
+  descripcion: string;
+}
+
 export interface PerfilTalento {
   slug: string;
   /** Nombre artístico autorizado. Nunca nombres legales ni datos privados. */

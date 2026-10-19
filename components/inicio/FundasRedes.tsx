@@ -2,7 +2,9 @@ import Link from "next/link";
 import { BotonConsulta } from "@/components/consulta/BotonConsulta";
 import { IconoFlechaDiagonal, IconoInstagram, IconoTiktok } from "@/components/ui/Iconos";
 import { sitio } from "@/config/sitio";
+import { videoNovedades } from "@/content/videos";
 import s from "./FundasRedes.module.css";
+import { VideoRotacion } from "./VideoRotacion";
 
 const fundas = [
   {
@@ -26,11 +28,13 @@ const fundas = [
 /**
  * Mientras no hay novedades publicadas en el sitio, las redes oficiales se
  * presentan como fundas de disco: el disco asoma y sale al pasar el cursor.
+ * Si hay un video de la marca configurado, gira «en rotación» a su lado.
  * Solo enlaces reales a los perfiles verificados de la marca.
  */
 export function FundasRedes() {
   return (
-    <div className={s.bloque}>
+    <div className={videoNovedades ? `${s.bloque} ${s.conVideo}` : s.bloque}>
+      {videoNovedades ? <VideoRotacion video={videoNovedades} /> : null}
       <ul className={s.fundas} role="list">
         {fundas.map(({ id, lado, red, usuario, url, Icono }, i) => (
           <li key={id} className={s.item} data-revelar style={{ "--orden": i } as React.CSSProperties}>

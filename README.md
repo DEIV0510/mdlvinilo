@@ -41,7 +41,8 @@ Todo se edita en **`config/sitio.ts`** (o con variables de entorno, ver `.env.ex
 
 | Dato | Dónde | Efecto |
 |---|---|---|
-| Número de WhatsApp | `NEXT_PUBLIC_WHATSAPP` o `whatsapp.numero` | Sin él, los botones de consulta abren el chat de Instagram y copian el mensaje. |
+| Número de WhatsApp | `whatsapp.numero` (configurado: +57 316 099 8998) o `NEXT_PUBLIC_WHATSAPP` | Tienda, servicios y contacto abren WhatsApp con el mensaje precargado. Vacío = todo va al chat de Instagram. |
+| Canal de talento | `whatsapp.talento` | `"instagram"` (actual): las consultas de campañas y talento van al chat de Instagram; `"whatsapp"`: al mismo número. |
 | Dominio definitivo | `NEXT_PUBLIC_SITE_URL` | Activa canonical, sitemap e imágenes para redes con URL absoluta. |
 | URL oficial de Facebook | `redes.facebook.url` | Se encontró `https://www.facebook.com/MdlViniloCol/` (parece de la marca, pero está vacía): confirmar antes de pegarla. |
 | Otra red oficial | `redes.otra` | Opcional. |
@@ -136,7 +137,7 @@ autorizaciones de imagen del talento (Ley 23 de 1982, art. 87), suficiencia de l
 personal, garantías y reversión del pago (Ley 1480 de 2011), y facturación.
 
 Restricciones de plataformas a tener en cuenta: la política de WhatsApp Business prohíbe promover
-«productos y servicios para adultos» (usar WhatsApp para la tienda de lencería y valorar un canal
-separado para el talento); Meta y TikTok restringen anuncios de entretenimiento para adultos; las
+«productos y servicios para adultos» (por eso WhatsApp queda para la tienda y los servicios, y el
+talento se consulta por Instagram: ver `whatsapp.talento`); Meta y TikTok restringen anuncios de entretenimiento para adultos; las
 pasarelas colombianas (Wompi, ePayco, PayU, Bold, Mercado Pago) restringen comercios de contenido para
 adultos o que enlacen a ellos.

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Foto } from "@/components/catalogo/Foto";
 import { BotonConsulta } from "@/components/consulta/BotonConsulta";
-import { mensajes } from "@/lib/contacto";
+import { mensajes, viaTalento } from "@/lib/contacto";
 import { getPerfil, getTalento } from "@/lib/datos";
 import { canonica } from "@/lib/seo";
 import pagina from "../../pagina.module.css";
@@ -56,7 +56,7 @@ export default async function PerfilPagina({ params }: Props) {
           <h1 className={`display ${s.nombre}`}>{p.nombreArtistico}</h1>
           {p.presentacion ? <p className={s.presentacion}>{p.presentacion}</p> : null}
 
-          <BotonConsulta texto="Consultar una campaña con la marca" mensaje={mensajes.talento(p.nombreArtistico)} />
+          <BotonConsulta texto="Consultar una campaña con la marca" mensaje={mensajes.talento(p.nombreArtistico)} via={viaTalento} />
 
           {p.proyectos?.length ? (
             <div className={s.bloque}>

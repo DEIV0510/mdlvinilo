@@ -133,3 +133,20 @@ export function IconoCopiar(p: P) {
     </Base>
   );
 }
+
+export function IconoReproducir(p: P) {
+  return (
+    <Base {...p}>
+      <path d="M8 5.5v13a.6.6 0 0 0 .9.5l10.2-6.5a.6.6 0 0 0 0-1L8.9 5a.6.6 0 0 0-.9.5Z" />
+    </Base>
+  );
+}
+
+export function IconoPausa(p: P) {
+  return (
+    <Base {...p}>
+      <rect x="6.5" y="5" width="3.6" height="14" rx="0.6" />
+      <rect x="13.9" y="5" width="3.6" height="14" rx="0.6" />
+    </Base>
+  );
+}
