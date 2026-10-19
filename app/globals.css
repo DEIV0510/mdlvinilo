@@ -58,7 +58,10 @@
   );
 
   /* Tipografía (las variables --f-* las define next/font en <html>) */
-  --display: var(--f-bodoni), "Bodoni 72", "Didot", Georgia, serif;
+  /* Serif editorial (acentos en cursiva, nombres, cifras) */
+  --display: var(--f-fraunces), Georgia, "Times New Roman", serif;
+  /* Titulares en mayúsculas */
+  --titular: var(--f-unbounded), "Arial Black", system-ui, sans-serif;
   --sans: var(--f-archivo), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Escala fluida */
@@ -71,6 +74,11 @@
   --t-3xl: clamp(2.5rem, 1.6rem + 4vw, 5rem);
   --t-4xl: clamp(3.25rem, 1.8rem + 6.6vw, 8.5rem);
   --t-mega: clamp(3.4rem, 1.2rem + 9.8vw, 11.5rem);
+
+  /* Escala de titulares (Unbounded es ancha: escala propia) */
+  --d-md: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  --d-lg: clamp(1.75rem, 1.1rem + 2.6vw, 3.4rem);
+  --d-xl: clamp(2rem, 1rem + 4vw, 4.75rem);
 
   /* Espacio */
   --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
@@ -109,6 +117,8 @@ html {
 }
 
 body {
+  /* Fraunces con curvas suaves (SOFT); el resto de fuentes ignora el eje */
+  font-variation-settings: "SOFT" 100;
   margin: 0;
   min-height: 100dvh;
   background: var(--fondo);
@@ -240,7 +250,6 @@ body::before {
   font-family: var(--sans);
   font-size: var(--t-xs);
   font-weight: 500;
-  font-stretch: 112%;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--texto-2);
@@ -252,19 +261,23 @@ body::before {
 
 /* Titulares editoriales */
 .display {
-  font-family: var(--display);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  /* Tamaño óptico moderado: conserva el contraste Didone sin que los
-     trazos finos desaparezcan en titulares grandes sobre negro. */
-  font-variation-settings: "opsz" 54;
+  font-family: var(--titular);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
 }
 
+/* Acento: cursiva suave en dorado, más grande que la mayúscula que la rodea */
 .display em,
 .cursiva {
+  font-family: var(--display);
   font-style: italic;
   font-weight: 500;
+  font-size: 1.14em;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
 /* Texto con acabado metálico (usar con moderación) */

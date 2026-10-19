@@ -143,6 +143,10 @@
 
 .visorTexto {
   position: relative;
+  font-family: var(--display);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.02em;
   align-self: center;
   justify-self: center;
   max-width: 11ch;
@@ -190,7 +194,8 @@
 }
 
 .nombre {
-  font-size: var(--t-2xl);
+  font-size: clamp(1.15rem, 0.9rem + 1vw, 1.75rem);
+  line-height: 1.12;
   line-height: 1.05;
   transition: color 0.35s;
 }

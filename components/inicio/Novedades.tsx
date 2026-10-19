@@ -1,14 +1,12 @@
-import Link from "next/link";
 import { BotonConsulta } from "@/components/consulta/BotonConsulta";
 import { Foto } from "@/components/catalogo/Foto";
 import { Boton } from "@/components/ui/Boton";
 import { Encabezado } from "@/components/ui/Encabezado";
-import { IconoInstagram, IconoTiktok } from "@/components/ui/Iconos";
-import { sitio } from "@/config/sitio";
 import type { Novedad } from "@/content/tipos";
 import { mensajes } from "@/lib/contacto";
 import { getNovedades, getProducto } from "@/lib/datos";
 import { indice } from "@/lib/formato";
+import { FundasRedes } from "./FundasRedes";
 import s from "./Novedades.module.css";
 
 function Acciones({ n }: { n: Novedad }) {
@@ -40,11 +38,7 @@ export function Novedades() {
               Lo nuevo en <em>Vinilo</em>
             </>
           }
-          entrada={
-            lista.length
-              ? "Lanzamientos, colecciones de temporada y piezas destacadas."
-              : "Los lanzamientos y colecciones de temporada se anuncian primero en nuestras redes oficiales."
-          }
+          entrada="Lanzamientos, colecciones de temporada y piezas destacadas."
         />
 
         {portada ? (
@@ -88,23 +82,7 @@ export function Novedades() {
             ) : null}
           </>
         ) : (
-          <div className={s.vacio} data-revelar>
-            <p className={s.vacioTexto}>
-              Sigue a <strong>{sitio.usuario}</strong> para ver cada lanzamiento antes que nadie.
-            </p>
-            <div className={s.vacioAcciones}>
-              <Boton href={sitio.redes.instagram.url} variante="secundario" icono={<IconoInstagram />}>
-                Ver en Instagram
-              </Boton>
-              <Boton href={sitio.redes.tiktok.url} variante="secundario" icono={<IconoTiktok />}>
-                Ver en TikTok
-              </Boton>
-              <BotonConsulta variante="enlace" texto="Preguntar por lo nuevo" mensaje="Hola, quiero conocer las novedades y lanzamientos de MDL Vinilo Colombia." />
-            </div>
-            <p className={s.vacioNota}>
-              <Link href="/coleccion">Ver la colección</Link>
-            </p>
-          </div>
+          <FundasRedes />
         )}
       </div>
     </section>

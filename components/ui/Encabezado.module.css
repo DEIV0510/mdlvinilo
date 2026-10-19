@@ -29,8 +29,8 @@
 }
 
 .titulo {
-  font-size: var(--t-4xl);
-  max-width: 14ch;
+  font-size: var(--d-xl);
+  max-width: 16ch;
 }
 
 .centro .titulo {
@@ -54,7 +54,16 @@
 }
 
 .accion {
-  flex: none;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 560px) {
+  .accion,
+  .accion > * {
+    width: 100%;
+  }
 }
 
 .entrada {

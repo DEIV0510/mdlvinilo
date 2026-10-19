@@ -39,7 +39,7 @@
 }
 
 .nombre {
-  font-size: var(--t-2xl);
+  font-size: clamp(1.15rem, 0.9rem + 1vw, 1.75rem);
   line-height: 1.05;
   transition: color 0.3s;
 }

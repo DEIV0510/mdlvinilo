@@ -126,10 +126,9 @@
 }
 
 .titulo {
-  font-size: var(--t-mega);
-  line-height: 0.86;
-  letter-spacing: -0.035em;
-  margin-left: -0.04em;
+  font-size: clamp(2.1rem, 0.9rem + 4.8vw, 5.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
 }
 
 .linea {
@@ -144,12 +143,15 @@
 }
 
 .linea:nth-child(2) {
-  padding-left: clamp(1.5rem, 9vw, 9rem);
+  padding-left: clamp(1.5rem, 7vw, 7.5rem);
+  margin-top: -0.06em;
 }
 
+/* «Vinilo»: cursiva suave casi el doble del tamaño de la línea superior */
 .titulo em {
-  font-style: italic;
-  padding-right: 0.06em;
+  font-size: 2.05em;
+  line-height: 1;
+  padding-right: 0.08em;
 }
 
 .subtitulo {
@@ -413,7 +415,7 @@
   }
 
   .titulo {
-    font-size: clamp(3.2rem, 16.5vw, 5.5rem);
+    font-size: clamp(1.9rem, 10.2vw, 3rem);
   }
 
   .acciones {
@@ -447,6 +449,6 @@
 /* Dos columnas: el titular se ajusta a su columna («El universo» en una línea) */
 @media (min-width: 1024px) {
   .titulo {
-    font-size: min(var(--t-mega), 10.2vw);
+    font-size: min(5.4rem, 5.6vw);
   }
 }

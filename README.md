@@ -4,7 +4,7 @@ Sitio oficial de **MDL Vinilo Colombia** (Floridablanca, Santander): colección 
 piezas de temporada, talento vinculado, servicios audiovisuales y publicitarios, y contacto comercial.
 
 - **Tecnología:** Next.js 16 (App Router) + React 19 + TypeScript + CSS Modules. Sin librerías de UI ni
-  de animación; tipografías Bodoni Moda y Archivo servidas desde el propio sitio (`next/font`).
+  de animación; tipografías Unbounded (titulares), Fraunces (acentos en cursiva) y Archivo (texto), servidas desde el propio sitio (`next/font`).
 - **Identidad:** construida a partir de los archivos originales `Logotipo dorado MDL ViNiLO!COL.png` y
   `logo.jpeg` (se conservan intactos en la raíz). Los recursos optimizados se generan con
   `npm run assets`.

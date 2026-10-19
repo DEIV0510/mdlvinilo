@@ -31,3 +31,4 @@ desktop.ini
 
 # configuración local del editor/agente
 /.claude
+/qa

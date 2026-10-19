@@ -29,7 +29,7 @@
 }
 
 .nombre {
-  font-size: var(--t-3xl);
+  font-size: var(--d-lg);
   line-height: 1;
 }
 
@@ -72,7 +72,7 @@
 
 .relacionadosTitulo {
   margin-bottom: clamp(2rem, 4vw, 3rem);
-  font-size: var(--t-3xl);
+  font-size: var(--d-lg);
 }
 
 .relacionadosTitulo em {

@@ -17,16 +17,24 @@
   text-align: center;
 }
 
+/* Relleno degradado (el contorno en fuentes variables deja ver trazos internos) */
 .marquesina span {
   display: inline-block;
-  font-size: min(9.2vw, 9rem);
-  line-height: 0.85;
+  font-size: min(6.6vw, 6.6rem);
+  line-height: 0.95;
+  padding-bottom: 0.08em;
+  background: linear-gradient(180deg, rgb(243 235 221 / 0.32), rgb(243 235 221 / 0.04));
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 1px rgb(232 168 24 / 0.38);
+  -webkit-text-fill-color: transparent;
 }
 
 .marquesina em {
-  -webkit-text-stroke: 1px rgb(245 197 66 / 0.7);
+  background: linear-gradient(180deg, rgb(245 197 66 / 0.85), rgb(232 168 24 / 0.12));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .rejilla {

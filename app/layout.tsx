@@ -1,19 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bodoni_Moda } from "next/font/google";
+import { Archivo, Fraunces, Unbounded } from "next/font/google";
 import { sitio } from "@/config/sitio";
 import "./globals.css";
 
-const bodoni = Bodoni_Moda({
+/** Titulares: grotesca ancha y redonda, en diálogo con las letras gruesas del logotipo. */
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--f-unbounded",
+});
+
+/** Acentos y títulos editoriales: serif suave (eje SOFT), cálida, de portada de disco. */
+const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
+  axes: ["SOFT"],
   display: "swap",
-  variable: "--f-bodoni",
+  variable: "--f-fraunces",
 });
 
 const archivo = Archivo({
   subsets: ["latin"],
-  axes: ["wdth"],
   display: "swap",
   variable: "--f-archivo",
 });
@@ -96,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es-CO"
-      className={`${bodoni.variable} ${archivo.variable}`}
+      className={`${unbounded.variable} ${fraunces.variable} ${archivo.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >

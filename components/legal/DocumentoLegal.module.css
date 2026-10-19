@@ -14,7 +14,7 @@
 }
 
 .titulo {
-  font-size: var(--t-3xl);
+  font-size: var(--d-lg);
   line-height: 1;
   text-wrap: balance;
 }

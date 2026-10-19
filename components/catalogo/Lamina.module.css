@@ -25,11 +25,8 @@
 
 .inicial {
   position: relative;
-  font-size: clamp(4.5rem, 12vw, 8rem);
+  font-size: clamp(3.5rem, 9vw, 6rem);
   line-height: 1;
-  font-weight: 600;
-  /* Tamaño óptico bajo: trazos finos más gruesos y legibles */
-  font-variation-settings: "opsz" 14;
   color: var(--oro-300);
   text-shadow: 0 0 40px rgb(232 168 24 / 0.25);
 }

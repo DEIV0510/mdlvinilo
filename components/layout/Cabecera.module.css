@@ -72,7 +72,6 @@
   padding: 0.6rem 0;
   font-size: 0.75rem;
   font-weight: 500;
-  font-stretch: 115%;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--marfil-2);
@@ -318,8 +317,11 @@
   align-items: baseline;
   gap: 1rem;
   padding: 0.85rem 0;
-  font-family: var(--display);
-  font-size: clamp(2.1rem, 9vw, 3.25rem);
+  font-family: var(--titular);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.6rem, 7.4vw, 2.6rem);
   line-height: 1.05;
   transition: color 0.3s;
 }

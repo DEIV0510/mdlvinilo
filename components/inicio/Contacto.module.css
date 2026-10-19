@@ -36,7 +36,7 @@
 }
 
 .titulo {
-  font-size: var(--t-mega);
+  font-size: clamp(2.4rem, 1rem + 5.4vw, 6.4rem);
   line-height: 0.9;
   padding-right: 0.08em;
 }

@@ -25,14 +25,21 @@
   align-items: center;
   gap: clamp(1.5rem, 3vw, 3rem);
   padding-right: clamp(1.5rem, 3vw, 3rem);
-  font-family: var(--display);
-  font-size: clamp(1.6rem, 1rem + 2.6vw, 3.25rem);
+  font-family: var(--titular);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.3rem, 0.9rem + 1.8vw, 2.5rem);
   line-height: 1;
   white-space: nowrap;
   color: var(--marfil);
 }
 
 .cursiva {
+  font-family: var(--display);
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1.2em;
   font-style: italic;
   color: var(--oro-300) !important;
 }

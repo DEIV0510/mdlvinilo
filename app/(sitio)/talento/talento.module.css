@@ -21,7 +21,7 @@
 }
 
 .vacioTitulo {
-  font-size: var(--t-3xl);
+  font-size: var(--d-lg);
 }
 
 .vacioTitulo em {
@@ -61,7 +61,7 @@
 }
 
 .nombre {
-  font-size: var(--t-4xl);
+  font-size: var(--d-xl);
 }
 
 .presentacion {

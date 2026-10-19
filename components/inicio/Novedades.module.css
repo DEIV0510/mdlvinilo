@@ -35,7 +35,7 @@
 }
 
 .portadaTitulo {
-  font-size: var(--t-3xl);
+  font-size: var(--d-lg);
 }
 
 .descripcion {
@@ -86,48 +86,6 @@
   font-size: var(--t-sm);
 }
 
-/* Sin novedades publicadas: invitación honesta a seguir las redes */
-.vacio {
-  display: grid;
-  gap: 1.75rem;
-  padding: clamp(2rem, 5vw, 3.5rem);
-  border: 1px solid var(--linea);
-  background:
-    radial-gradient(60% 120% at 100% 0%, rgb(232 168 24 / 0.08), transparent 60%),
-    var(--fondo-2);
-}
-
-.vacioTexto {
-  font-family: var(--display);
-  font-size: var(--t-2xl);
-  line-height: 1.15;
-  max-width: 24ch;
-}
-
-.vacioTexto strong {
-  font-weight: 400;
-  font-style: italic;
-  color: var(--oro-300);
-}
-
-.vacioAcciones {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.9rem 1.5rem;
-}
-
-.vacioNota a {
-  font-size: var(--t-sm);
-  color: var(--marfil-2);
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-}
-
-.vacioNota a:hover {
-  color: var(--oro-200);
-}
-
 @media (max-width: 900px) {
   .portadaImagen,
   .portadaTexto {
@@ -150,11 +108,5 @@
 
   .item {
     scroll-snap-align: start;
-  }
-}
-
-@media (max-width: 560px) {
-  .vacioAcciones > * {
-    width: 100%;
   }
 }
