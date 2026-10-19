@@ -20,22 +20,38 @@ export function pareceRastreador(userAgent: string | null): boolean {
   return Boolean(userAgent && UA_RASTREADOR.test(userAgent));
 }
 
-function conLimite<T>(p: Promise<T>): Promise<T> {
-  return Promise.race([
-    p,
-    new Promise<T>((_, rechazar) => setTimeout(() => rechazar(new Error("tiempo")), TIEMPO_MAX_MS)),
-  ]);
+const TTL_ERROR_MS = 60 * 1000;
+
+async function conLimite<T>(p: Promise<T>): Promise<T> {
+  let temporizador: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      p,
+      new Promise<T>((_, rechazar) => {
+        temporizador = setTimeout(() => rechazar(new Error("tiempo")), TIEMPO_MAX_MS);
+      }),
+    ]);
+  } finally {
+    clearTimeout(temporizador);
+  }
 }
 
-async function verificarIp(ip: string): Promise<boolean> {
+/** true / false definitivos; "error" si el DNS falló o tardó (se reintenta pronto). */
+async function verificarIp(ip: string): Promise<boolean | "error"> {
+  let nombres: string[];
   try {
-    const nombres = await conLimite(reverse(ip));
-    const host = nombres.find((n) => DOMINIOS.some((d) => n.toLowerCase().endsWith(d)));
-    if (!host) return false;
+    nombres = await conLimite(reverse(ip));
+  } catch (e) {
+    const codigo = (e as { code?: string }).code;
+    return codigo === "ENOTFOUND" || codigo === "ENODATA" ? false : "error";
+  }
+  const host = nombres.find((n) => DOMINIOS.some((d) => n.toLowerCase().endsWith(d)));
+  if (!host) return false;
+  try {
     const direcciones = await conLimite(lookup(host, { all: true }));
     return direcciones.some((d) => d.address === ip);
   } catch {
-    return false;
+    return "error";
   }
 }
 
@@ -44,9 +60,10 @@ export async function esRastreadorVerificado(userAgent: string | null, ip: strin
   const ahora = Date.now();
   const guardado = cache.get(ip);
   if (guardado && guardado.hasta > ahora) return guardado.ok;
-  const ok = await verificarIp(ip);
+  const resultado = await verificarIp(ip);
+  const ok = resultado === true;
   if (cache.size >= MAX_ENTRADAS) cache.clear();
-  cache.set(ip, { ok, hasta: ahora + TTL_MS });
+  cache.set(ip, { ok, hasta: ahora + (resultado === "error" ? TTL_ERROR_MS : TTL_MS) });
   return ok;
 }
 

@@ -28,6 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: d.titulo,
     description: d.resumen,
     alternates: canonica(`/legal/${d.slug}`),
+    // Los borradores con notas pendientes no se indexan (siguen siendo públicos).
+    robots: d.estado === "borrador" ? { index: false, follow: true } : undefined,
   };
 }
 

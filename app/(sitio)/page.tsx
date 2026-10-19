@@ -7,7 +7,11 @@ import { Servicios } from "@/components/inicio/Servicios";
 import { Sobre } from "@/components/inicio/Sobre";
 import { Talento } from "@/components/inicio/Talento";
 import { sitio } from "@/config/sitio";
+import type { Metadata } from "next";
 import { redesOficiales } from "@/lib/contacto";
+import { canonica } from "@/lib/seo";
+
+export const metadata: Metadata = { alternates: canonica("/") };
 
 // Se regenera cada hora: así un perfil con la autorización vencida deja de mostrarse.
 export const revalidate = 3600;

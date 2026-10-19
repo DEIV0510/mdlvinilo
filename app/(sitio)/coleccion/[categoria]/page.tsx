@@ -26,6 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${c.nombre} — Colección`,
     description: `${c.nombre} de MDL Vinilo Colombia. ${c.linea} Consulta disponibilidad, tallas y precios.`,
     alternates: canonica(`/coleccion/${c.id}`),
+    // Sin piezas publicadas, la categoría no se indexa.
+    ...(getProductosPorCategoria(c.id).length ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
@@ -51,7 +53,7 @@ export default async function CategoriaPagina({ params }: Props) {
       <Encabezado nivel={1} rotulo="Colección" titulo={<em>{c.nombre}</em>} entrada={c.linea} />
       <FiltroCategorias actual={c.id} />
       {productos.length ? (
-        <RejillaProductos productos={productos} nivelTitulo={2} />
+        <RejillaProductos productos={productos} nivelTitulo={2} revelarDesde={3} />
       ) : (
         <CatalogoVacio categoria={c.nombre} />
       )}

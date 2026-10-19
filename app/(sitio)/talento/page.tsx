@@ -12,11 +12,13 @@ import s from "./talento.module.css";
 // La vigencia de las autorizaciones se revisa cada hora.
 export const revalidate = 3600;
 
+// Mientras no haya contenido publicado, la página no se indexa (evita páginas vacías en buscadores).
 export const metadata: Metadata = {
   title: "Talento Vinilo",
   description:
     "Modelos adultas con vínculo comercial formal con MDL Vinilo Colombia. Perfiles publicados con autorización. Consultas para campañas y colaboraciones.",
   alternates: canonica("/talento"),
+  ...(getTalento().length ? {} : { robots: { index: false, follow: true } }),
 };
 
 export default function TalentoPagina() {
@@ -39,7 +41,7 @@ export default function TalentoPagina() {
       {perfiles.length ? (
         <ul className={s.rejilla} role="list">
           {perfiles.map((p, i) => (
-            <li key={p.slug} data-revelar style={{ "--orden": i % 3 } as React.CSSProperties}>
+            <li key={p.slug} data-revelar={i >= 3 ? "" : undefined} style={{ "--orden": i % 3 } as React.CSSProperties}>
               <TarjetaTalento perfil={p} numero={indice(i + 1)} nivelTitulo={2} />
             </li>
           ))}

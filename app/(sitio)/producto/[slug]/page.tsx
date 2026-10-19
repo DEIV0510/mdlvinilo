@@ -33,20 +33,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** Datos estructurados de producto, solo con información confirmada. */
-function jsonLd(p: Producto) {
+/**
+ * Datos estructurados de producto, solo con información confirmada. Google
+ * exige una oferta (precio y disponibilidad) para el resultado enriquecido:
+ * sin ella no se emite nada.
+ */
+function jsonLd(p: Producto): string | null {
+  if (!(typeof p.precio === "number" && p.precio > 0 && p.disponibilidad)) return null;
+  const base = sitio.dominio.replace(/\/$/, "");
   const datos: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: p.nombre,
     brand: { "@type": "Brand", name: sitio.marca },
-  };
-  if (p.descripcion) datos.description = p.descripcion;
-  if (sitio.dominio && p.imagenes.length) {
-    datos.image = p.imagenes.map((i) => `${sitio.dominio.replace(/\/$/, "")}${i.src}`);
-  }
-  if (typeof p.precio === "number" && p.precio > 0 && p.disponibilidad) {
-    datos.offers = {
+    offers: {
       "@type": "Offer",
       price: p.precio,
       priceCurrency: "COP",
@@ -55,8 +55,15 @@ function jsonLd(p: Producto) {
         agotado: "https://schema.org/OutOfStock",
         "por-encargo": "https://schema.org/PreOrder",
       }[p.disponibilidad],
-    };
-  }
+      ...(base ? { url: `${base}/producto/${p.slug}` } : {}),
+    },
+  };
+  if (p.descripcion) datos.description = p.descripcion;
+  if (base) datos.url = `${base}/producto/${p.slug}`;
+  const imagenes = p.imagenes
+    .map((i) => (/^https?:\/\//.test(i.src) ? i.src : base ? `${base}${i.src}` : ""))
+    .filter(Boolean);
+  if (imagenes.length) datos.image = imagenes;
   return JSON.stringify(datos).replace(/</g, "\\u003c");
 }
 
@@ -68,10 +75,11 @@ export default async function ProductoPagina({ params }: Props) {
     .filter((x) => x.slug !== p.slug)
     .slice(0, 3);
   const imagenes = p.imagenes.length ? p.imagenes : [undefined];
+  const ld = p.demo ? null : jsonLd(p);
 
   return (
     <>
-      {!p.demo ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(p) }} /> : null}
+      {ld ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} /> : null}
       <div className={`contenedor ${pagina.pagina}`}>
         <nav aria-label="Ruta de navegación" className={pagina.migas}>
           <ol>

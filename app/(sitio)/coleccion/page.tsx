@@ -8,11 +8,13 @@ import { getProductos } from "@/lib/datos";
 import { canonica } from "@/lib/seo";
 import s from "../pagina.module.css";
 
+// Mientras no haya contenido publicado, la página no se indexa (evita páginas vacías en buscadores).
 export const metadata: Metadata = {
   title: "Colección",
   description:
     "Lencería, trajes y prendas, colecciones de temporada y lanzamientos de MDL Vinilo Colombia. Consulta disponibilidad, tallas y precios.",
   alternates: canonica("/coleccion"),
+  ...(getProductos().length ? {} : { robots: { index: false, follow: true } }),
 };
 
 export default function ColeccionPagina() {
@@ -32,7 +34,7 @@ export default function ColeccionPagina() {
       />
       <FiltroCategorias />
       {productos.length ? (
-        <RejillaProductos productos={productos} nivelTitulo={2} />
+        <RejillaProductos productos={productos} nivelTitulo={2} revelarDesde={3} />
       ) : (
         <>
           <CatalogoVacio />
