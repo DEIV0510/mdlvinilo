@@ -9,8 +9,8 @@ import { canonica } from "@/lib/seo";
 import pagina from "../pagina.module.css";
 import s from "./talento.module.css";
 
-// La vigencia de las autorizaciones se revisa al menos una vez al día.
-export const revalidate = 86400;
+// La vigencia de las autorizaciones se revisa cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Talento Vinilo",
@@ -33,7 +33,7 @@ export default function TalentoPagina() {
           </>
         }
         entrada="No es un directorio abierto: aquí aparecen únicamente modelos adultas con vínculo comercial formal con la marca y autorización expresa para publicar su imagen."
-        accion={<BotonConsulta variante="secundario" texto="Consultar colaboraciones" mensaje={mensajes.talento()} />}
+        accion={<BotonConsulta variante="secundario" texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />}
       />
 
       {perfiles.length ? (
@@ -53,7 +53,7 @@ export default function TalentoPagina() {
             Estamos preparando los perfiles autorizados. Para campañas, colaboraciones o promoción comercial,
             escríbenos.
           </p>
-          <BotonConsulta texto="Consultar servicios del talento" mensaje={mensajes.talento()} />
+          <BotonConsulta texto="Consultar campañas y colaboraciones" mensaje={mensajes.talento()} />
         </div>
       )}
 

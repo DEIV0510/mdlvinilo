@@ -18,11 +18,16 @@ const archivo = Archivo({
   variable: "--f-archivo",
 });
 
+/** Dominio configurado o, en Vercel, el dominio de producción del proyecto. */
+const urlBase =
+  sitio.dominio ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "");
+
 const descripcion =
   "MDL Vinilo Colombia: lencería, trajes y colecciones de temporada, producción audiovisual y promoción comercial desde Floridablanca, Santander. Sitio para mayores de 18 años.";
 
 export const metadata: Metadata = {
-  ...(sitio.dominio ? { metadataBase: new URL(sitio.dominio) } : {}),
+  ...(urlBase ? { metadataBase: new URL(urlBase) } : {}),
   title: {
     default: "MDL Vinilo Colombia — Moda, imagen y producción audiovisual",
     template: "%s · MDL Vinilo Colombia",

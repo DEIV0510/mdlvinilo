@@ -270,3 +270,39 @@
     transition: opacity 0.2s;
   }
 }
+
+.itemRetirado {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--texto-3);
+}
+
+.etiquetaMensaje {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+
+.mensaje {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: var(--marfil);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+  resize: vertical;
+}
+
+.mensaje:focus-visible {
+  outline: 2px solid var(--oro-200);
+  outline-offset: 2px;
+}
+
+.estadoCopia {
+  min-height: 1.2em;
+  font-size: var(--t-xs);
+  color: var(--oro-200);
+}

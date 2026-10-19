@@ -119,7 +119,7 @@ export const documento: DocumentoLegal = {
         {
           tipo: "p",
           texto:
-            "Los botones y enlaces a WhatsApp, Instagram, TikTok y Facebook lo llevan a sitios o aplicaciones de terceros. Esas plataformas usan sus propias cookies y tecnologías según sus políticas de privacidad y de cookies, que {{marca}} no controla. Le recomendamos revisarlas.",
+            "Los botones y enlaces a redes sociales y aplicaciones de mensajería (por ejemplo Instagram, TikTok o WhatsApp, según los canales activos en el sitio) lo llevan a sitios o aplicaciones de terceros. Esas plataformas usan sus propias cookies y tecnologías según sus políticas de privacidad y de cookies, que {{marca}} no controla. Le recomendamos revisarlas.",
         },
       ],
     },

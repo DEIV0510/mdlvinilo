@@ -9,6 +9,9 @@ import { Talento } from "@/components/inicio/Talento";
 import { sitio } from "@/config/sitio";
 import { redesOficiales } from "@/lib/contacto";
 
+// Se regenera cada hora: así un perfil con la autorización vencida deja de mostrarse.
+export const revalidate = 3600;
+
 /** Datos estructurados solo con información verificable y confirmada. */
 function datosEstructurados() {
   const org: Record<string, unknown> = {

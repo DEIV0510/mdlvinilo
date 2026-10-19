@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { canalConsulta, mensajes } from "@/lib/contacto";
-import { IconoCerrar, IconoMas, IconoMenos } from "@/components/ui/Iconos";
+import { clasesBoton } from "@/components/ui/Boton";
+import { IconoCerrar, IconoCopiar, IconoMas, IconoMenos } from "@/components/ui/Iconos";
+import { bloquearFondo } from "@/lib/modal";
 import { BotonConsulta } from "./BotonConsulta";
 import { useConsulta } from "./ConsultaProvider";
-import { bloquearFondo } from "@/lib/modal";
 import s from "./Seleccion.module.css";
 
-/** Panel lateral (diálogo modal nativo) con la lista de consulta. */
-export function PanelSeleccion() {
+/**
+ * Panel lateral (diálogo modal nativo) con la lista de consulta.
+ * `slugsPublicados` llega del servidor: una pieza guardada que ya no está
+ * publicada se muestra sin enlace (nunca lleva a una página inexistente).
+ */
+export function PanelSeleccion({ slugsPublicados }: { slugsPublicados: string[] }) {
   const { items, abierto, cerrar, cambiarCantidad, quitar, vaciar, aviso } = useConsulta();
   const ref = useRef<HTMLDialogElement>(null);
+  const areaMensaje = useRef<HTMLTextAreaElement>(null);
+  const [copiado, setCopiado] = useState<"" | "ok" | "manual">("");
+  const publicados = new Set(slugsPublicados);
 
   useEffect(() => {
     const d = ref.current;
@@ -23,12 +31,25 @@ export function PanelSeleccion() {
   }, [abierto]);
 
   const mensaje = mensajes.lista(items);
+  const canal = canalConsulta(mensaje);
+
+  async function copiarMensaje() {
+    try {
+      await navigator.clipboard.writeText(mensaje);
+      setCopiado("ok");
+    } catch {
+      // Sin acceso al portapapeles: se selecciona el texto para copiarlo a mano.
+      areaMensaje.current?.focus();
+      areaMensaje.current?.select();
+      setCopiado("manual");
+    }
+  }
+
   const avisoRegion = (
     <div className={s.aviso} role="status" aria-live="polite" data-visible={aviso ? "" : undefined}>
       {aviso}
     </div>
   );
-  const canal = canalConsulta(mensaje);
 
   return (
     <>
@@ -36,7 +57,10 @@ export function PanelSeleccion() {
         ref={ref}
         className={s.panel}
         aria-labelledby="seleccion-titulo"
-        onClose={cerrar}
+        onClose={() => {
+          setCopiado("");
+          cerrar();
+        }}
         onClick={(e) => {
           // Clic en el fondo (fuera de la caja) cierra el panel.
           if (e.target === e.currentTarget) cerrar();
@@ -66,9 +90,15 @@ export function PanelSeleccion() {
                 {items.map((it) => (
                   <li key={it.id} className={s.item}>
                     <div className={s.itemTexto}>
-                      <Link href={`/producto/${it.slug}`} className={s.itemNombre} onClick={cerrar}>
-                        {it.nombre}
-                      </Link>
+                      {publicados.has(it.slug) ? (
+                        <Link href={`/producto/${it.slug}`} className={s.itemNombre} onClick={cerrar}>
+                          {it.nombre}
+                        </Link>
+                      ) : (
+                        <span className={s.itemNombre}>
+                          {it.nombre} <span className={s.itemRetirado}>(ya no está publicada)</span>
+                        </span>
+                      )}
                       {(it.talla || it.color) && (
                         <p className={s.itemDetalle}>
                           {[it.talla && `Talla ${it.talla}`, it.color && `Color ${it.color}`]
@@ -109,11 +139,49 @@ export function PanelSeleccion() {
               </ul>
 
               <footer className={s.pie}>
-                <p className={s.nota}>
-                  Esto no es una compra. Al enviar, se abre {canal.nombre} con tu lista para que el equipo
-                  confirme disponibilidad, precio y entrega.
-                </p>
-                <BotonConsulta mensaje={mensaje} texto="Enviar consulta por {canal}" ancho />
+                {canal.tipo === "whatsapp" ? (
+                  <>
+                    <p className={s.nota}>
+                      Esto no es una compra. Al enviar, se abre WhatsApp con tu lista para que el equipo
+                      confirme disponibilidad, precio y entrega.
+                    </p>
+                    <BotonConsulta mensaje={mensaje} texto="Enviar consulta por {canal}" ancho />
+                  </>
+                ) : (
+                  <>
+                    <p className={s.nota}>
+                      Esto no es una compra. Instagram no permite adjuntar mensajes: copia tu lista y pégala
+                      en el chat para que el equipo confirme disponibilidad, precio y entrega.
+                    </p>
+                    <label className={s.etiquetaMensaje} htmlFor="mensaje-seleccion">
+                      Mensaje para enviar
+                    </label>
+                    <textarea
+                      id="mensaje-seleccion"
+                      ref={areaMensaje}
+                      className={s.mensaje}
+                      readOnly
+                      rows={Math.min(8, items.length + 2)}
+                      value={mensaje}
+                    />
+                    <button
+                      type="button"
+                      className={clasesBoton("secundario", { ancho: true })}
+                      onClick={copiarMensaje}
+                    >
+                      <IconoCopiar />
+                      <span>{copiado === "ok" ? "Mensaje copiado" : "Copiar mensaje"}</span>
+                    </button>
+                    <p className={s.estadoCopia} role="status">
+                      {copiado === "ok"
+                        ? "Listo: ahora abre Instagram y pega el mensaje."
+                        : copiado === "manual"
+                          ? "Texto seleccionado: cópialo con el teclado o manteniendo pulsado."
+                          : ""}
+                    </p>
+                    <BotonConsulta mensaje={mensaje} texto="Abrir chat de Instagram" ancho />
+                  </>
+                )}
                 <button type="button" className={s.vaciar} onClick={vaciar}>
                   Vaciar selección
                 </button>

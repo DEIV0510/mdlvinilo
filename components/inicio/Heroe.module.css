@@ -406,6 +406,12 @@
     margin-bottom: -1rem;
   }
 
+  .rotulo {
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    gap: 0.6rem;
+  }
+
   .titulo {
     font-size: clamp(3.2rem, 16.5vw, 5.5rem);
   }

@@ -81,6 +81,13 @@ export function Pie() {
             <span className="sr-only"> (se abre en una pestaña nueva)</span>
           </a>
         </p>
+        <p className={s.proteccion}>
+          Protección al consumidor:{" "}
+          <a href="https://www.sic.gov.co/" target="_blank" rel="noopener noreferrer">
+            Superintendencia de Industria y Comercio
+            <span className="sr-only"> (se abre en una pestaña nueva)</span>
+          </a>
+        </p>
         <div className={s.legal}>
           <p>
             © {anio} {sitio.marca}. Todos los derechos reservados. Logotipos, fotografías y videos son

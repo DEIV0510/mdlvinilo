@@ -74,9 +74,9 @@ export const mensajes = {
       : "Hola, quiero información sobre los servicios audiovisuales y publicitarios de MDL Vinilo Colombia.",
 
   talento: (nombre?: string) =>
-    nombre
-      ? `Hola, quiero consultar servicios comerciales con ${nombre}, talento de MDL Vinilo Colombia.`
-      : "Hola, quiero consultar servicios comerciales con el talento de MDL Vinilo Colombia.",
+    `Hola, quiero consultar una campaña o colaboración publicitaria con MDL Vinilo Colombia${
+      nombre ? ` (perfil: ${nombre})` : ""
+    }.`,
 
   novedad: (titulo: string) => `Hola, quiero saber más sobre «${titulo}» de MDL Vinilo Colombia.`,
 

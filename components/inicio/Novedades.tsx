@@ -7,14 +7,14 @@ import { IconoInstagram, IconoTiktok } from "@/components/ui/Iconos";
 import { sitio } from "@/config/sitio";
 import type { Novedad } from "@/content/tipos";
 import { mensajes } from "@/lib/contacto";
-import { getNovedades } from "@/lib/datos";
+import { getNovedades, getProducto } from "@/lib/datos";
 import { indice } from "@/lib/formato";
 import s from "./Novedades.module.css";
 
 function Acciones({ n }: { n: Novedad }) {
   return (
     <div className={s.acciones}>
-      {n.productoSlug ? (
+      {n.productoSlug && getProducto(n.productoSlug) ? (
         <Boton href={`/producto/${n.productoSlug}`} variante="enlace" flecha>
           Ver la pieza
         </Boton>
@@ -102,7 +102,7 @@ export function Novedades() {
               <BotonConsulta variante="enlace" texto="Preguntar por lo nuevo" mensaje="Hola, quiero conocer las novedades y lanzamientos de MDL Vinilo Colombia." />
             </div>
             <p className={s.vacioNota}>
-              <Link href="/coleccion">Ver la colección disponible</Link>
+              <Link href="/coleccion">Ver la colección</Link>
             </p>
           </div>
         )}

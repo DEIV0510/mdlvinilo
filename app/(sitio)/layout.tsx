@@ -5,6 +5,7 @@ import { Intro } from "@/components/intro/Intro";
 import { Cabecera } from "@/components/layout/Cabecera";
 import { Pie } from "@/components/layout/Pie";
 import { Revelador } from "@/components/ui/Revelador";
+import { getProductos } from "@/lib/datos";
 
 export default function SitioLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +19,7 @@ export default function SitioLayout({ children }: { children: React.ReactNode })
         {children}
       </main>
       <Pie />
-      <PanelSeleccion />
+      <PanelSeleccion slugsPublicados={getProductos().map((p) => p.slug)} />
       <Revelador />
       <AvisoPendientes />
     </ConsultaProvider>

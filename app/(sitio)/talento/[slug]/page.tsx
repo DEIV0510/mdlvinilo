@@ -10,8 +10,8 @@ import pagina from "../../pagina.module.css";
 import s from "../talento.module.css";
 
 export const dynamicParams = false;
-// La vigencia de las autorizaciones se revisa al menos una vez al día.
-export const revalidate = 86400;
+// La vigencia de las autorizaciones se revisa cada hora.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return getTalento().map((p) => ({ slug: p.slug }));
@@ -56,7 +56,7 @@ export default async function PerfilPagina({ params }: Props) {
           <h1 className={`display ${s.nombre}`}>{p.nombreArtistico}</h1>
           {p.presentacion ? <p className={s.presentacion}>{p.presentacion}</p> : null}
 
-          <BotonConsulta texto="Consultar servicios comerciales" mensaje={mensajes.talento(p.nombreArtistico)} />
+          <BotonConsulta texto="Consultar una campaña con la marca" mensaje={mensajes.talento(p.nombreArtistico)} />
 
           {p.proyectos?.length ? (
             <div className={s.bloque}>

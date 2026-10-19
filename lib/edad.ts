@@ -21,13 +21,25 @@ export function esRutaPublica(pathname: string): boolean {
   return RUTAS_PUBLICAS.some((r) => pathname === r || pathname.startsWith(`${r}/`));
 }
 
+const ORIGEN_INTERNO = "http://interno.invalid";
+
 /**
- * Evita redirecciones abiertas: solo rutas internas relativas.
+ * Evita redirecciones abiertas: solo rutas internas del propio sitio.
+ * Se interpreta como lo haría el navegador (new URL) y se exige que el
+ * resultado siga en el mismo origen; se rechazan caracteres de control
+ * (tabuladores, saltos de línea) y barras invertidas.
  */
 export function destinoSeguro(valor: unknown): string {
-  if (typeof valor !== "string") return "/";
-  const v = valor.trim();
-  if (!v.startsWith("/") || v.startsWith("//") || v.includes("\\") || /[\r\n]/.test(v)) return "/";
-  if (v.startsWith("/acceso") || v.startsWith("/salida") || v.startsWith("/api/")) return "/";
-  return v.length > 512 ? "/" : v;
+  if (typeof valor !== "string" || valor.length === 0 || valor.length > 512) return "/";
+  if (!valor.startsWith("/") || /[\u0000-\u001F\u007F\\]/.test(valor)) return "/";
+  let url: URL;
+  try {
+    url = new URL(valor, ORIGEN_INTERNO);
+  } catch {
+    return "/";
+  }
+  if (url.origin !== ORIGEN_INTERNO) return "/";
+  const ruta = `${url.pathname}${url.search}`;
+  if (ruta.startsWith("//") || /^\/(acceso|salida|api)(\/|\?|$)/.test(ruta)) return "/";
+  return ruta;
 }

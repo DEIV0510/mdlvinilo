@@ -13,6 +13,7 @@ const UA_RASTREADOR = /\b(Googlebot|Google-InspectionTool|GoogleOther|bingbot)\b
 const DOMINIOS = [".googlebot.com", ".google.com", ".search.msn.com"];
 const TTL_MS = 6 * 60 * 60 * 1000;
 const TIEMPO_MAX_MS = 1500;
+const MAX_ENTRADAS = 2000;
 const cache = new Map<string, { ok: boolean; hasta: number }>();
 
 export function pareceRastreador(userAgent: string | null): boolean {
@@ -44,13 +45,25 @@ export async function esRastreadorVerificado(userAgent: string | null, ip: strin
   const guardado = cache.get(ip);
   if (guardado && guardado.hasta > ahora) return guardado.ok;
   const ok = await verificarIp(ip);
-  if (cache.size > 2000) cache.clear();
+  if (cache.size >= MAX_ENTRADAS) cache.clear();
   cache.set(ip, { ok, hasta: ahora + TTL_MS });
   return ok;
 }
 
-/** IP del cliente según el proxy inverso de confianza (Vercel, Nginx…). */
+/**
+ * IP real del visitante, tomada SOLO de una fuente que el cliente no puede
+ * falsificar:
+ * - En Vercel: `x-vercel-forwarded-for` (la fija la plataforma).
+ * - En servidor propio: la cabecera indicada en MDL_CABECERA_IP (p. ej.
+ *   `x-real-ip`, fijada por Nginx con `proxy_set_header X-Real-IP $remote_addr;`).
+ * Sin una fuente de confianza devuelve null y el pase para buscadores queda
+ * desactivado (todos ven la pantalla de acceso).
+ */
 export function ipCliente(cabeceras: Headers): string | null {
-  const reenviada = cabeceras.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return reenviada || cabeceras.get("x-real-ip") || null;
+  if (process.env.VERCEL) {
+    return cabeceras.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || null;
+  }
+  const nombre = process.env.MDL_CABECERA_IP?.trim().toLowerCase();
+  if (!nombre) return null;
+  return cabeceras.get(nombre)?.split(",")[0]?.trim() || null;
 }

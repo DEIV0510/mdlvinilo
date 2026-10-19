@@ -113,8 +113,13 @@ NEXT_PUBLIC_SITE_URL=https://tu-dominio NEXT_PUBLIC_WHATSAPP=57XXXXXXXXXX npm ru
 npm start -- -p 3000      # detrás de Nginx con HTTPS; mantener vivo con PM2 o systemd
 ```
 
-El proxy inverso debe enviar `X-Forwarded-For` con la IP real del visitante (lo usa la verificación
-de rastreadores).
+Para el pase de buscadores verificados, el proxy inverso debe fijar la IP real en una cabecera que el
+visitante no pueda falsificar y indicarla en `MDL_CABECERA_IP` (p. ej. Nginx:
+`proxy_set_header X-Real-IP $remote_addr;` y `MDL_CABECERA_IP=x-real-ip`). Sin esa variable, el pase
+queda desactivado y los buscadores ven la pantalla de acceso. En Vercel no hace falta configurar nada.
+
+> No guardes el HTML en una caché compartida (CDN/Nginx) sin tener en cuenta la cookie `mdl_edad`:
+> el sitio ya responde con `Cache-Control: private` en las páginas protegidas.
 
 > No se requiere base de datos ni claves privadas. Si en el futuro se agrega una pasarela de pagos,
 > sus claves secretas deben ir solo en variables de entorno del servidor, nunca en `NEXT_PUBLIC_*`.

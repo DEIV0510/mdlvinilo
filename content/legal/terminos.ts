@@ -252,7 +252,7 @@ export const documento: DocumentoLegal = {
         {
           tipo: "p",
           texto:
-            "El sitio incluye enlaces a WhatsApp, Instagram, TikTok y Facebook. Al abrirlos, usted sale del sitio y aplican los términos y políticas de privacidad de esas plataformas, que {{marca}} no controla.",
+            "El sitio incluye enlaces a redes sociales y aplicaciones de mensajería de terceros (por ejemplo Instagram, TikTok o WhatsApp, según los canales activos). Al abrirlos, usted sale del sitio y aplican los términos y políticas de privacidad de esas plataformas, que {{marca}} no controla.",
         },
         {
           tipo: "p",

@@ -3,6 +3,8 @@ import { sitio } from "@/config/sitio";
 import { categorias } from "@/content/categorias";
 import { getProductos, getTalento } from "@/lib/datos";
 
+export const revalidate = 3600;
+
 /**
  * Mapa del sitio. Requiere dominio definitivo (NEXT_PUBLIC_SITE_URL):
  * sin él no se publican URLs absolutas incorrectas.
